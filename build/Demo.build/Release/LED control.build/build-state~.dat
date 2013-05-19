@@ -1,0 +1,75 @@
+TLED control
+v5
+r1
+cCheck dependencies
+cCompileC "build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o" "/Users/mutexre/Projects/avr/Demo/LED control/main.cpp" normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cLd "/Users/mutexre/Projects/avr/Demo/build/Release/LED control" normal x86_64
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk
+c0000000051765A9E00000000000000AA
+t1366710942
+s170
+
+N/Users/mutexre/Projects/avr/Demo/../../../../../usr/local/lib/libusb-0.1.4.dylib
+c000000004AA93ABA00000000000223D8
+t1252604602
+s140248
+
+N/Users/mutexre/Projects/avr/Demo/LED control/main.cpp
+c000000005195B8300000000000000088
+t1368766512
+s136
+i<iostream>
+
+N/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/LED control.LinkFileList
+c000000005195B8330000000000000069
+t1368766515
+s105
+
+N/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Users/mutexre/Projects/avr/Demo/build/Release/LED control
+t2
+s0
+
+N/Users/mutexre/Projects/avr/Demo/build/Release/LED control.dSYM
+t2
+s0
+
+CBuild AST from "/Users/mutexre/Projects/avr/Demo/LED control/main.cpp"
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies5ccacdb3ef45b741^cdabdab3ef45b741^---0#1#0#--18"Check dependencies36"1DAF4DD8-36AA-41F3-9D7F-D94DC00AF363-
+
+CCompileC "build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o" "/Users/mutexre/Projects/avr/Demo/LED control/main.cpp" normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+s390459315.855951
+e390459316.706616
+r1
+xCompileC
+xbuild/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o
+x/Users/mutexre/Projects/avr/Demo/LED control/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection61"Compile /Users/mutexre/Projects/avr/Demo/LED control/main.cpp8d41dbb3ef45b741^efe3b4b4ef45b741^---0#0#0#-19%DVTDocumentLocation2@71"file://localhost/Users/mutexre/Projects/avr/Demo/LED%20control/main.cpp0000000000000000^2469"CompileC "build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o" "LED control/main.cpp" normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/mutexre/Projects/avr/Demo    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x c++ -arch x86_64 -fmessage-length=0 -std=gnu++11 -stdlib=libc++ -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-c++11-extensions -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -fasm-blocks -fstrict-aliasing -Wdeprecated-declarations -Winvalid-offsetof -mmacosx-version-min=10.8 -g -fvisibility=hidden -fvisibility-inlines-hidden -Wno-sign-conversion -iquote "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/LED control-generated-files.hmap" "-I/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/LED control-own-target-headers.hmap" "-I/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/LED control-all-target-headers.hmap" -iquote "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/LED control-project-headers.hmap" -I/Users/mutexre/Projects/avr/Demo/build/Release/include -I/usr/local/include/libusb-1.0 "-I/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/DerivedSources/x86_64" "-I/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/DerivedSources" -F/Users/mutexre/Projects/avr/Demo/build/Release -MMD -MT dependencies -MF "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.d" --serialize-diagnostics "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.dia" -c "/Users/mutexre/Projects/avr/Demo/LED control/main.cpp" -o "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o"36"62C4F7C9-055B-4B7C-ACAE-E197738B6735-
+
+CGenerateDSYMFile "/Users/mutexre/Projects/avr/Demo/build/Release/LED control.dSYM" "/Users/mutexre/Projects/avr/Demo/build/Release/LED control"
+r0
+
+CLd "/Users/mutexre/Projects/avr/Demo/build/Release/LED control" normal x86_64
+s390459316.713439
+e390459316.746446
+r0
+xLd
+x/Users/mutexre/Projects/avr/Demo/build/Release/LED control
+xnormal
+xx86_64
+old: library not found for -lusb-0.1.4
+oclang: error: linker command failed with exit code 1 (use -v to see invocation)
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection63"Link /Users/mutexre/Projects/avr/Demo/build/Release/LED control34bbb6b4ef45b741^4414bfb4ef45b741^-118"ld: library not found for -lusb-0.1.4clang: error: linker command failed with exit code 1 (use -v to see invocation)2(21%IDEActivityLogMessage2@33"Library not found for -lusb-0.1.4-390459316#0#38#-0#-23%DVTTextDocumentLocation3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#31"Apple Mach-O Linker (ld) Notice--2@65"Linker command failed with exit code 1 (use -v to see invocation)-390459316#38#80#-2#-3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#30"Apple Mach-O Linker (ld) Error--0#0#0#--697"Ld "build/Release/LED control" normal x86_64    cd /Users/mutexre/Projects/avr/Demo    setenv MACOSX_DEPLOYMENT_TARGET 10.8    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk -L/Users/mutexre/Projects/avr/Demo/build/Release -F/Users/mutexre/Projects/avr/Demo/build/Release -filelist "/Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/LED control.LinkFileList" -mmacosx-version-min=10.8 -stdlib=libc++ -lusb-0.1.4 -o "/Users/mutexre/Projects/avr/Demo/build/Release/LED control"36"6FC18643-C801-421B-888F-E91B8B86C2D3-
+
