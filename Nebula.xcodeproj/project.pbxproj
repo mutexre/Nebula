@@ -22,10 +22,25 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		924AFDE91745ED020000B619 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924AFDE81745ED020000B619 /* main.cpp */; };
-		924AFDEB1745ED020000B619 /* LED_control.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 924AFDEA1745ED020000B619 /* LED_control.1 */; };
+		924AFDE91745ED020000B619 /* ledctl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924AFDE81745ED020000B619 /* ledctl.cpp */; };
+		924AFDEB1745ED020000B619 /* ledctl.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 924AFDEA1745ED020000B619 /* ledctl.1 */; };
 		924AFDF1174603A40000B619 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */; };
-		92DAF69817487EA5005AEE0B /* RgbHsv.h in Sources */ = {isa = PBXBuildFile; fileRef = 92DAF69717487EA5005AEE0B /* RgbHsv.h */; };
+		929E8537174D133B002DE715 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8536174D133B002DE715 /* CoreGraphics.framework */; };
+		929E853A174E2BEE002DE715 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8530174D130D002DE715 /* CoreFoundation.framework */; };
+		92FB8AEA174A72440080F861 /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8ADF174A72440080F861 /* cmdline.cpp */; };
+		92FB8AEB174A72440080F861 /* config_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE0174A72440080F861 /* config_file.cpp */; };
+		92FB8AEC174A72440080F861 /* convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE1174A72440080F861 /* convert.cpp */; };
+		92FB8AED174A72440080F861 /* options_description.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE2174A72440080F861 /* options_description.cpp */; };
+		92FB8AEE174A72440080F861 /* parsers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE3174A72440080F861 /* parsers.cpp */; };
+		92FB8AEF174A72440080F861 /* positional_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE4174A72440080F861 /* positional_options.cpp */; };
+		92FB8AF0174A72440080F861 /* split.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE5174A72440080F861 /* split.cpp */; };
+		92FB8AF1174A72440080F861 /* utf8_codecvt_facet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE6174A72440080F861 /* utf8_codecvt_facet.cpp */; };
+		92FB8AF2174A72440080F861 /* value_semantic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE7174A72440080F861 /* value_semantic.cpp */; };
+		92FB8AF3174A72440080F861 /* variables_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE8174A72440080F861 /* variables_map.cpp */; };
+		92FB8AF4174A72440080F861 /* winmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AE9174A72440080F861 /* winmain.cpp */; };
+		92FB8AFF174B2E3E0080F861 /* SignalHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AFD174B2E3E0080F861 /* SignalHandling.cpp */; };
+		92FB8B00174B2E3E0080F861 /* usb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8AFE174B2E3E0080F861 /* usb.cpp */; };
+		92FB8B05174B46BC0080F861 /* libRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FB8B04174B46BC0080F861 /* libRuntime.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +67,7 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				924AFDEB1745ED020000B619 /* LED_control.1 in CopyFiles */,
+				924AFDEB1745ED020000B619 /* ledctl.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -84,14 +99,35 @@
 		922ABCC0174283F2005B3239 /* usbdrvasm18-crc.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = "usbdrvasm18-crc.inc"; sourceTree = "<group>"; };
 		922ABCC1174283F2005B3239 /* usbdrvasm20.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = usbdrvasm20.inc; sourceTree = "<group>"; };
 		922ABCC2174283F2005B3239 /* usbportability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = usbportability.h; sourceTree = "<group>"; };
-		924AFDE51745ED020000B619 /* ledctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ledctl; sourceTree = BUILT_PRODUCTS_DIR; };
-		924AFDE81745ED020000B619 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		924AFDEA1745ED020000B619 /* LED_control.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LED_control.1; sourceTree = "<group>"; };
+		924AFDE51745ED020000B619 /* leds */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leds; sourceTree = BUILT_PRODUCTS_DIR; };
+		924AFDE81745ED020000B619 /* ledctl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ledctl.cpp; sourceTree = "<group>"; };
+		924AFDEA1745ED020000B619 /* ledctl.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ledctl.1; sourceTree = "<group>"; };
 		924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-1.0.0.dylib"; path = "../../../../../usr/local/Cellar/libusb/1.0.9/lib/libusb-1.0.0.dylib"; sourceTree = "<group>"; };
-		92DAF693174875E8005AEE0B /* Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shared.h; sourceTree = SOURCE_ROOT; };
+		929E852F174C6E05002DE715 /* DeviceRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceRequests.h; path = ../DeviceRequests.h; sourceTree = "<group>"; };
+		929E8530174D130D002DE715 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		929E8532174D1324002DE715 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		929E8534174D1330002DE715 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
+		929E8536174D133B002DE715 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		929E8538174E2BD5002DE715 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		92DAF69517487A06005AEE0B /* RGB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RGB.h; sourceTree = "<group>"; };
 		92DAF69617487B4E005AEE0B /* HSV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSV.h; sourceTree = "<group>"; };
 		92DAF69717487EA5005AEE0B /* RgbHsv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RgbHsv.h; sourceTree = "<group>"; };
+		92FB8ADF174A72440080F861 /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cmdline.cpp; path = boost/program_options/cmdline.cpp; sourceTree = "<group>"; };
+		92FB8AE0174A72440080F861 /* config_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = config_file.cpp; path = boost/program_options/config_file.cpp; sourceTree = "<group>"; };
+		92FB8AE1174A72440080F861 /* convert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = convert.cpp; path = boost/program_options/convert.cpp; sourceTree = "<group>"; };
+		92FB8AE2174A72440080F861 /* options_description.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = options_description.cpp; path = boost/program_options/options_description.cpp; sourceTree = "<group>"; };
+		92FB8AE3174A72440080F861 /* parsers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = parsers.cpp; path = boost/program_options/parsers.cpp; sourceTree = "<group>"; };
+		92FB8AE4174A72440080F861 /* positional_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = positional_options.cpp; path = boost/program_options/positional_options.cpp; sourceTree = "<group>"; };
+		92FB8AE5174A72440080F861 /* split.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = split.cpp; path = boost/program_options/split.cpp; sourceTree = "<group>"; };
+		92FB8AE6174A72440080F861 /* utf8_codecvt_facet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utf8_codecvt_facet.cpp; path = boost/program_options/utf8_codecvt_facet.cpp; sourceTree = "<group>"; };
+		92FB8AE7174A72440080F861 /* value_semantic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = value_semantic.cpp; path = boost/program_options/value_semantic.cpp; sourceTree = "<group>"; };
+		92FB8AE8174A72440080F861 /* variables_map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = variables_map.cpp; path = boost/program_options/variables_map.cpp; sourceTree = "<group>"; };
+		92FB8AE9174A72440080F861 /* winmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = winmain.cpp; path = boost/program_options/winmain.cpp; sourceTree = "<group>"; };
+		92FB8AFB174B2E3E0080F861 /* SignalHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalHandling.h; sourceTree = SOURCE_ROOT; };
+		92FB8AFC174B2E3E0080F861 /* usb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usb.h; sourceTree = SOURCE_ROOT; };
+		92FB8AFD174B2E3E0080F861 /* SignalHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandling.cpp; sourceTree = SOURCE_ROOT; };
+		92FB8AFE174B2E3E0080F861 /* usb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = usb.cpp; sourceTree = SOURCE_ROOT; };
+		92FB8B04174B46BC0080F861 /* libRuntime.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRuntime.a; path = ../../../../private/tmp/build/Debug/libRuntime.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +135,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929E853A174E2BEE002DE715 /* CoreFoundation.framework in Frameworks */,
+				929E8537174D133B002DE715 /* CoreGraphics.framework in Frameworks */,
+				92FB8B05174B46BC0080F861 /* libRuntime.a in Frameworks */,
 				924AFDF1174603A40000B619 /* libusb-1.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,8 +148,17 @@
 		4079523B0CEA382200E202DC = {
 			isa = PBXGroup;
 			children = (
+				929E8538174E2BD5002DE715 /* CoreData.framework */,
+				929E8536174D133B002DE715 /* CoreGraphics.framework */,
+				929E8534174D1330002DE715 /* Quartz.framework */,
+				929E8532174D1324002DE715 /* QuartzCore.framework */,
+				929E8530174D130D002DE715 /* CoreFoundation.framework */,
+				92FB8B04174B46BC0080F861 /* libRuntime.a */,
 				924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */,
-				92DAF694174879CA005AEE0B /* Shared */,
+				92FB8B02174B2E800080F861 /* Color */,
+				92FB8B01174B2E480080F861 /* USB */,
+				92FB8B03174B41160080F861 /* Nebula Device */,
+				92FB8ADD174A72260080F861 /* boost */,
 				4079525D0CEA38CC00E202DC /* Firmware */,
 				924AFDE71745ED020000B619 /* Command Line */,
 				924AFDE61745ED020000B619 /* Products */,
@@ -120,6 +168,7 @@
 		4079525D0CEA38CC00E202DC /* Firmware */ = {
 			isa = PBXGroup;
 			children = (
+				929E852F174C6E05002DE715 /* DeviceRequests.h */,
 				4079525E0CEA38CC00E202DC /* main.cpp */,
 				4079525F0CEA38CC00E202DC /* Makefile */,
 				922ABCAB174283F2005B3239 /* usbdrv */,
@@ -161,7 +210,7 @@
 		924AFDE61745ED020000B619 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				924AFDE51745ED020000B619 /* ledctl */,
+				924AFDE51745ED020000B619 /* leds */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,22 +218,65 @@
 		924AFDE71745ED020000B619 /* Command Line */ = {
 			isa = PBXGroup;
 			children = (
-				924AFDE81745ED020000B619 /* main.cpp */,
-				924AFDEA1745ED020000B619 /* LED_control.1 */,
+				92FB8AFB174B2E3E0080F861 /* SignalHandling.h */,
+				92FB8AFD174B2E3E0080F861 /* SignalHandling.cpp */,
+				924AFDE81745ED020000B619 /* ledctl.cpp */,
+				924AFDEA1745ED020000B619 /* ledctl.1 */,
 			);
 			name = "Command Line";
 			path = "LED control";
 			sourceTree = "<group>";
 		};
-		92DAF694174879CA005AEE0B /* Shared */ = {
+		92FB8ADD174A72260080F861 /* boost */ = {
 			isa = PBXGroup;
 			children = (
-				92DAF693174875E8005AEE0B /* Shared.h */,
+				92FB8ADE174A72350080F861 /* program options */,
+			);
+			name = boost;
+			sourceTree = "<group>";
+		};
+		92FB8ADE174A72350080F861 /* program options */ = {
+			isa = PBXGroup;
+			children = (
+				92FB8ADF174A72440080F861 /* cmdline.cpp */,
+				92FB8AE0174A72440080F861 /* config_file.cpp */,
+				92FB8AE1174A72440080F861 /* convert.cpp */,
+				92FB8AE2174A72440080F861 /* options_description.cpp */,
+				92FB8AE3174A72440080F861 /* parsers.cpp */,
+				92FB8AE4174A72440080F861 /* positional_options.cpp */,
+				92FB8AE5174A72440080F861 /* split.cpp */,
+				92FB8AE6174A72440080F861 /* utf8_codecvt_facet.cpp */,
+				92FB8AE7174A72440080F861 /* value_semantic.cpp */,
+				92FB8AE8174A72440080F861 /* variables_map.cpp */,
+				92FB8AE9174A72440080F861 /* winmain.cpp */,
+			);
+			name = "program options";
+			sourceTree = "<group>";
+		};
+		92FB8B01174B2E480080F861 /* USB */ = {
+			isa = PBXGroup;
+			children = (
+				92FB8AFC174B2E3E0080F861 /* usb.h */,
+				92FB8AFE174B2E3E0080F861 /* usb.cpp */,
+			);
+			name = USB;
+			sourceTree = "<group>";
+		};
+		92FB8B02174B2E800080F861 /* Color */ = {
+			isa = PBXGroup;
+			children = (
 				92DAF69517487A06005AEE0B /* RGB.h */,
 				92DAF69617487B4E005AEE0B /* HSV.h */,
 				92DAF69717487EA5005AEE0B /* RgbHsv.h */,
 			);
-			name = Shared;
+			name = Color;
+			sourceTree = "<group>";
+		};
+		92FB8B03174B41160080F861 /* Nebula Device */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Nebula Device";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +313,7 @@
 			);
 			name = "LED control";
 			productName = "LED control";
-			productReference = 924AFDE51745ED020000B619 /* ledctl */;
+			productReference = 924AFDE51745ED020000B619 /* leds */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -232,7 +324,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = 4079523E0CEA382200E202DC /* Build configuration list for PBXProject "Demo" */;
+			buildConfigurationList = 4079523E0CEA382200E202DC /* Build configuration list for PBXProject "Nebula" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -256,8 +348,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				924AFDE91745ED020000B619 /* main.cpp in Sources */,
-				92DAF69817487EA5005AEE0B /* RgbHsv.h in Sources */,
+				924AFDE91745ED020000B619 /* ledctl.cpp in Sources */,
+				92FB8AEA174A72440080F861 /* cmdline.cpp in Sources */,
+				92FB8AEB174A72440080F861 /* config_file.cpp in Sources */,
+				92FB8AEC174A72440080F861 /* convert.cpp in Sources */,
+				92FB8AED174A72440080F861 /* options_description.cpp in Sources */,
+				92FB8AEE174A72440080F861 /* parsers.cpp in Sources */,
+				92FB8AEF174A72440080F861 /* positional_options.cpp in Sources */,
+				92FB8AF0174A72440080F861 /* split.cpp in Sources */,
+				92FB8AF1174A72440080F861 /* utf8_codecvt_facet.cpp in Sources */,
+				92FB8AF2174A72440080F861 /* value_semantic.cpp in Sources */,
+				92FB8AF3174A72440080F861 /* variables_map.cpp in Sources */,
+				92FB8AF4174A72440080F861 /* winmain.cpp in Sources */,
+				92FB8AFF174B2E3E0080F861 /* SignalHandling.cpp in Sources */,
+				92FB8B00174B2E3E0080F861 /* usb.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				VERSION = 0.1;
 			};
 			name = Release;
 		};
@@ -297,6 +402,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				BOOST_PATH = /Volumes/AUX/Programming/boost_1_53_0;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -307,17 +413,27 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "VERSION=${VERSION}";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "/usr/local/include/libusb-1.0";
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/libusb-1.0",
+					"${RUNTIME_PATH}/Sources",
+					"${BOOST_PATH}",
+					"${RAPIDXML_PATH}",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					/usr/local/Cellar/libusb/1.0.9/lib,
+					/tmp/build/Release,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = ledctl;
+				PRODUCT_NAME = leds;
+				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
+				RUNTIME_PATH = ../Runtime;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -326,16 +442,84 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 			};
 			name = Release;
+		};
+		929E853B174E3596002DE715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				VERSION = 0.1;
+			};
+			name = Debug;
+		};
+		929E853C174E3596002DE715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PATH = "$(PATH):/usr/local/CrossPack-AVR/bin";
+			};
+			name = Debug;
+		};
+		929E853D174E3596002DE715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				BOOST_PATH = /Volumes/AUX/Programming/boost_1_53_0;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "VERSION=${VERSION}";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"/usr/local/include/libusb-1.0",
+					"${RUNTIME_PATH}/Sources",
+					"${BOOST_PATH}",
+					"${RAPIDXML_PATH}",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/usr/local/Cellar/libusb/1.0.9/lib,
+					/tmp/build/Debug,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = leds;
+				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
+				RUNTIME_PATH = ../Runtime;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		929E853E174E3596002DE715 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4079523E0CEA382200E202DC /* Build configuration list for PBXProject "Demo" */ = {
+		4079523E0CEA382200E202DC /* Build configuration list for PBXProject "Nebula" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				407952400CEA382200E202DC /* Release */,
+				929E853B174E3596002DE715 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -344,6 +528,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				407952630CEA393300E202DC /* Release */,
+				929E853C174E3596002DE715 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -352,6 +537,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				924AFDED1745ED020000B619 /* Release */,
+				929E853D174E3596002DE715 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -360,6 +546,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				924AFDF417478A400000B619 /* Release */,
+				929E853E174E3596002DE715 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,6 +1,7 @@
+ffffffffffffffffffffffffffffffff f9e6797d9a05818f9d8a2b690cd93906 ffffffffffffffffffffffffffffffff 0 /Users/mutexre/Projects/avr/Demo/build/Release/ledctl
+000000005fb96c870000000000002673 dbef51ef69bfa354d8da390003f3841e ffffffffffffffffffffffffffffffff 1087668 /Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o
 ffffffffffffffffffffffffffffffff 07694dc896d8a3ff536298cfc710405e ffffffffffffffffffffffffffffffff 102 /Users/mutexre/Projects/avr/Demo/build/Release/ledctl.dSYM
-ffffffffffffffffffffffffffffffff f9e6797d9a05818f9d8a2b690cd93906 ffffffffffffffffffffffffffffffff 28328 /Users/mutexre/Projects/avr/Demo/build/Release/ledctl
-000000005179d07d000000000000b9b5 2199a1c9c7dfe57f854fc95e826bad79 ffffffffffffffffffffffffffffffff 130816 /Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.o
+000000005fb96c870000000000002673 5127c4f0135608898839cef94b49cf59 ffffffffffffffffffffffffffffffff 0 /Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/main.ii
 000000005198477800000000000002aa 12cb186920385acfeeef85894e513a72 ffffffffffffffffffffffffffffffff 0 /Users/mutexre/Projects/avr/Demo/build/Demo.build/Release/LED control.build/Objects-normal/x86_64/RGB.o
 ffffffffffffffffffffffffffffffff 37dbf50fa90ab813571fe4e101bcc135 ffffffffffffffffffffffffffffffff 102 /Users/mutexre/Projects/avr/Demo/build/Release/LED control.dSYM
 ae6b154e7596e8b69ce262dc2cc8e374 8adb3a3e145eb71950af489b86baccfa ffffffffffffffffffffffffffffffff 11624 /Users/mutexre/Projects/avr/Demo/build/Release/LED control

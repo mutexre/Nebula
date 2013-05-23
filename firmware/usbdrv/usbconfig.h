@@ -123,7 +123,7 @@ section at the end of this file).
  * The value is in milliamperes. [It will be divided by two since USB
  * communicates power requirements in units of 2 mA.]
  */
-#define USB_CFG_IMPLEMENT_FN_WRITE      0
+#define USB_CFG_IMPLEMENT_FN_WRITE      1
 /* Set this to 1 if you want usbFunctionWrite() to be called for control-out
  * transfers. Set it to 0 if you don't need it and want to save a couple of
  * bytes.
@@ -134,7 +134,7 @@ section at the end of this file).
  * data from a static buffer, set it to 0 and return the data from
  * usbFunctionSetup(). This saves a couple of bytes.
  */
-#define USB_CFG_IMPLEMENT_FN_WRITEOUT   1
+#define USB_CFG_IMPLEMENT_FN_WRITEOUT   0
 /* Define this to 1 if you want to use interrupt-out (or bulk out) endpoints.
  * You must implement the function usbFunctionWriteOut() which receives all
  * interrupt/bulk data sent to any endpoint other than 0. The endpoint number
@@ -241,7 +241,7 @@ section at the end of this file).
 #define USB_CFG_DEVICE_VERSION  0x00, 0x01
 /* Version number of the device: Minor number first, then major number.
  */
-#define USB_CFG_VENDOR_NAME     'm', 'u', 't', 'e', 'x', 'r', 'e'
+#define USB_CFG_VENDOR_NAME     'M', 'u', 't', 'e', 'x', 'r', 'e'
 #define USB_CFG_VENDOR_NAME_LEN 7
 /* These two values define the vendor name returned by the USB device. The name
  * must be given as a list of characters under single quotes. The characters
@@ -251,8 +251,8 @@ section at the end of this file).
  * obdev's free shared VID/PID pair. See the file USB-IDs-for-free.txt for
  * details.
  */
-#define USB_CFG_DEVICE_NAME     'a', 'm', 'b', 'i', 'l', 'i', 'g', 'h', 't'
-#define USB_CFG_DEVICE_NAME_LEN 9
+#define USB_CFG_DEVICE_NAME     'N', 'e', 'b', 'u', 'l', 'a'
+#define USB_CFG_DEVICE_NAME_LEN 6
 /* Same as above for the device name. If you don't want a device name, undefine
  * the macros. See the file USB-IDs-for-free.txt before you assign a name if
  * you use a shared VID/PID.

@@ -18,6 +18,10 @@ public:
         this->s = s;
         this->v = v;
     }
+
+    HSV<T> operator*(T x) const {
+        return HSV<T>(h, s, v * x);
+    }
 };
 
 #endif

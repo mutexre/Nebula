@@ -17,7 +17,7 @@
                BlueprintIdentifier = "924AFDF217478A400000B619"
                BuildableName = "All"
                BlueprintName = "All"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               ReferencedContainer = "container:Nebula.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
-            BuildableName = "ledctl"
+            BuildableName = "leds"
             BlueprintName = "LED control"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,11 +52,29 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
-            BuildableName = "ledctl"
+            BuildableName = "leds"
             BlueprintName = "LED control"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "ambilight"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--color=100:50:150"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--nleds=30"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--rate=10"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

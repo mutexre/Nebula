@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "924AFDE41745ED020000B619"
-               BuildableName = "ledctl"
+               BuildableName = "leds"
                BlueprintName = "LED control"
-               ReferencedContainer = "container:Demo.xcodeproj">
+               ReferencedContainer = "container:Nebula.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
-            BuildableName = "ledctl"
+            BuildableName = "leds"
             BlueprintName = "LED control"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,11 +52,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
-            BuildableName = "ledctl"
+            BuildableName = "leds"
             BlueprintName = "LED control"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "ambilight"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
-            BuildableName = "ledctl"
+            BuildableName = "leds"
             BlueprintName = "LED control"
-            ReferencedContainer = "container:Demo.xcodeproj">
+            ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
