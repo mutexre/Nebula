@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Nebula.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>firmware.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>924AFDF217478A400000B619</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92DB222C17539C3E007BF35B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

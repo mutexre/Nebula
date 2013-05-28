@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "407952600CEA391500E202DC"
-               BuildableName = "firmware"
-               BlueprintName = "firmware"
+               BuildableName = "Firmware"
+               BlueprintName = "Firmware"
                ReferencedContainer = "container:Nebula.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

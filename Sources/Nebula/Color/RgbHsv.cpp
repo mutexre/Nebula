@@ -1,9 +1,9 @@
-#ifndef header_C45CC8CD
-#define header_C45CC8CD
-
 #include <algorithm>
+#include <functional>
+#include <Nebula/Nebula.h>
 
-HSV<float> rgb2hsv(RGB<float>& rgb)
+Nebula::Color::HSV<float>
+Nebula::Color::rgb2hsv(RGB<float>& rgb)
 {
     HSV<float> hsv;
     float Max, Min;
@@ -34,7 +34,8 @@ HSV<float> rgb2hsv(RGB<float>& rgb)
     return hsv;
 }
 
-RGB<float> hsv2rgb(HSV<float>& hsv)
+Nebula::Color::RGB<float>
+Nebula::Color::hsv2rgb(HSV<float>& hsv)
 {
     RGB<float> rgb;
     float f, p, q, t;
@@ -93,4 +94,16 @@ RGB<float> hsv2rgb(HSV<float>& hsv)
     return rgb;
 }
 
-#endif
+Nebula::Color::RGB<RT::u1>
+Nebula::Color::transformSaturationOfRgb(float r, float g, float b, std::function<float (float saturation)> transformation)
+{
+    RGB<float> rgb(r, g, b);
+    HSV<float> hsv = rgb2hsv(rgb);
+
+    hsv.s = transformation(hsv.s);
+    rgb = hsv2rgb(hsv);
+
+    return RGB<RT::u1>((RT::u4(rgb.r * 255.0f)) & 0xff,
+                       (RT::u4(rgb.g * 255.0f)) & 0xff,
+                       (RT::u4(rgb.b * 255.0f)) & 0xff);
+}

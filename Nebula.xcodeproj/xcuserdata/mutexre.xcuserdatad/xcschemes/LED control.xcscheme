@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "924AFDE41745ED020000B619"
                BuildableName = "leds"
-               BlueprintName = "LED control"
+               BlueprintName = "Command Line"
                ReferencedContainer = "container:Nebula.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
             BuildableName = "leds"
-            BlueprintName = "LED control"
+            BlueprintName = "Command Line"
             ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,13 +53,17 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
             BuildableName = "leds"
-            BlueprintName = "LED control"
+            BlueprintName = "Command Line"
             ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "ambilight"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--nleds=30"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -77,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "924AFDE41745ED020000B619"
             BuildableName = "leds"
-            BlueprintName = "LED control"
+            BlueprintName = "Command Line"
             ReferencedContainer = "container:Nebula.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
