@@ -14,6 +14,7 @@ namespace Nebula
             private:
                 mach_port_t masterPort = MACH_PORT_NULL;
                 IONotificationPortRef ioNotificationPort = 0;
+                io_iterator_t deviceIterator = IO_OBJECT_NULL;
 
                 static void matchedNotificationCallback(void* data, io_iterator_t iterator);
 

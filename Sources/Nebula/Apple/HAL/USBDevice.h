@@ -10,14 +10,22 @@ namespace Nebula
             class USBDevice : public Nebula::HAL::Device
             {
             protected:
-                Context* context;
+                Context* context = 0;
                 io_object_t interestNotification = 0;
-                IOUSBInterfaceInterface300** deviceInterface = 0;
+                IOUSBDeviceInterface** interface = 0;
 
                 static void deviceNotificationCallback(void* data,
                                                        io_service_t service,
                                                        natural_t messageType,
                                                        void* messageArgument);
+
+                void controlRequest(IOUSBDevRequest*);
+                void getUUID(uuid_t, int uuidType);
+                void setUUID(uuid_t, int uuidType);
+                void getNumberOfLeds(RT::u4*);
+                void setNumberOfLeds(RT::u4);
+                void getColors(Color::RGB<RT::u1>*, RT::u4 numberOfLeds);
+                void setColors(Color::RGB<RT::u1>*, RT::u4 numberOfLeds);
 
             public:
                 USBDevice(io_service_t device, Context* context);

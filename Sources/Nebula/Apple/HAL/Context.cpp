@@ -130,7 +130,7 @@ Nebula::Apple::HAL::Context::Context(std::function<void (Nebula::HAL::Device*)> 
     CFMutableDictionaryRef matchingDict = 0;
     int usbVendorID = 0x16c0;
     int usbProductID = 0x05dc;
-    io_iterator_t deviceIterator;
+    io_iterator_t deviceIterator = IO_OBJECT_NULL;
 
     result = IOMasterPort(MACH_PORT_NULL, &masterPort);
     if (result != KERN_SUCCESS) {
@@ -179,15 +179,16 @@ Nebula::Apple::HAL::Context::Context(std::function<void (Nebula::HAL::Device*)> 
                                               matchingDict,
                                               matchedNotificationCallback,
                                               this, &deviceIterator);
-    if (result != KERN_SUCCESS) {
+    if (result != KERN_SUCCESS || deviceIterator == IO_OBJECT_NULL) {
         errorID = 0x75495FE4;
         goto errorOut;
     }
 
-    matchedNotificationCallback(0, deviceIterator);
-
     this->masterPort = masterPort;
     this->ioNotificationPort = ioNotificationPort;
+    this->deviceIterator = deviceIterator;
+
+    matchedNotificationCallback(this, deviceIterator);
 
     return;
 
@@ -201,6 +202,7 @@ errorOut:
 Nebula::Apple::HAL::Context::~Context() {
     if (ioNotificationPort) IONotificationPortDestroy(ioNotificationPort);
     if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
+    if (deviceIterator) IOObjectRelease(deviceIterator);
 }
 
 Nebula::HAL::Context*

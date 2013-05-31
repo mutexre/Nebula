@@ -9,10 +9,11 @@ namespace Nebula {
 }
 
 #include <Runtime/Runtime.h>
-#include <Nebula/HAL/Device.h>
-#include <Nebula/HAL/Context.h>
 #include <Nebula/Color/HSV.h>
 #include <Nebula/Color/RGB.h>
 #include <Nebula/Color/RgbHsv.h>
+#include <Nebula/DeviceRequests.h>
+#include <Nebula/HAL/Device.h>
+#include <Nebula/HAL/Context.h>
 
 #endif

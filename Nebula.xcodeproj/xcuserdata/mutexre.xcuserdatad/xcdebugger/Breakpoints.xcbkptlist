@@ -168,5 +168,97 @@
          landmarkName = "computeAmbilightColors(RGB&lt;RT::u1&gt;* leds, const RT::u1* pixelData, size_t bytesPerRow, size_t bytesPerPixel, RT::u4 width, RT::u4 height, RT::u2 left, RT::u2 right, RT::u2 bottom, RT::u2 top, std::function&lt;RGB&lt;RT::u1&gt; (float r, float g, float b)&gt; colorTransformation)"
          landmarkType = "7">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391495808.701243"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "33"
+         endingLineNumber = "33"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391669238.483641"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "53"
+         endingLineNumber = "53"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391669267.931873"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391669324.221557"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "57"
+         endingLineNumber = "57"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/CommandLine/ledctl.cpp"
+         timestampString = "391673818.9718"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "426"
+         endingLineNumber = "426"
+         landmarkName = "main(int argc, const char** argv)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391673877.452702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request)"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
+   <SymbolicBreakpoints>
+      <AddressBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         symbolName = "*0x1003031b8">
+      </AddressBreakpoint>
+      <AddressBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         symbolName = "*0x1003031f6">
+      </AddressBreakpoint>
+   </SymbolicBreakpoints>
 </Bucket>

@@ -3,14 +3,15 @@
 #include <time.h>
 #include <math.h>
 #include <functional>
+#include <uuid/uuid.h>
 #include <boost/program_options.hpp>
 #include <CoreFoundation/CoreFoundation.h>
 #include <ApplicationServices/ApplicationServices.h>
-#include <libusb.h>
+//#include <libusb.h>
 #include <Nebula/Nebula.h>
 #include "SignalHandling.h"
-#include "usb.h"
-#include "DeviceRequests.h"
+//#include "usb.h"
+//#include "DeviceRequests.h"
 
 #define STRINGOLIZER(a) #a
 #define VERSION_STRING(version, date, time) "Version " STRINGOLIZER(version) " built on " date " " time
@@ -19,7 +20,7 @@ RT::u2 convertLedNumber(RT::u2 n) {
     return 3 * (n / 3) + (2 - n % 3);
 }
 
-void rotateColorCycle(RGB<RT::u1>* leds, RT::u2 numberOfLeds, HSV<float>* hsv, float rate)
+void rotateColorCycle(Nebula::Color::RGB<RT::u1>* leds, RT::u2 numberOfLeds, Nebula::Color::HSV<float>* hsv, float rate)
 {
     if (hsv->h < 360.0f) {
         hsv->h += rate;
@@ -28,8 +29,8 @@ void rotateColorCycle(RGB<RT::u1>* leds, RT::u2 numberOfLeds, HSV<float>* hsv, f
             float h = hsv->h + float(i) * (360.0f / float(numberOfLeds));
             if (h >= 360.0f) h -= 360.0f;
 
-            HSV<float> _hsv(h, hsv->s, hsv->v);
-            RGB<float> rgb = hsv2rgb(_hsv);
+            Nebula::Color::HSV<float> _hsv(h, hsv->s, hsv->v);
+            Nebula::Color::RGB<float> rgb = hsv2rgb(_hsv);
 
             leds[convertLedNumber(i)].set(255 * rgb.r, 255 * rgb.g, 255 * rgb.b);
         }
@@ -158,8 +159,11 @@ void getPixelData(CGImageRef imageRef, RT::u1* pixelData) {
     CGContextRelease(context);
 }
 
-RGB<RT::u1> computeAvarageColor(const RT::u1* pixelData, size_t bytesPerRow, size_t bytesPerPixel, size_t rectX, size_t rectY, size_t rectWidth, size_t rectHeight,
-                                std::function<RGB<RT::u1> (float r, float g, float b)> colorTransformation)
+Nebula::Color::RGB<RT::u1> computeAvarageColor(const RT::u1* pixelData,
+                                               size_t bytesPerRow, size_t bytesPerPixel,
+                                               size_t rectX, size_t rectY,
+                                               size_t rectWidth, size_t rectHeight,
+                                               std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
 {
     RT::u4 rSum = 0, gSum = 0, bSum = 0;
 
@@ -188,12 +192,12 @@ RT::u4 calculateBarSize(RT::u4 n, RT::u4 i, RT::u4 size, float a) {
     return (size / 2) * f;
 }
 
-void computeAmbilightColors(RGB<RT::u1>* leds, const RT::u1* pixelData,
+void computeAmbilightColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixelData,
                             size_t bytesPerRow, size_t bytesPerPixel,
                             RT::u4 width, RT::u4 height,
                             RT::u2 left, RT::u2 right,
                             RT::u2 bottom, RT::u2 top,
-                            std::function<RGB<RT::u1> (float r, float g, float b)> colorTransformation)
+                            std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
 {
     RT::u4 ledIndex = 0;
 
@@ -222,8 +226,9 @@ void computeAmbilightColors(RGB<RT::u1>* leds, const RT::u1* pixelData,
 int main(int argc, const char** argv)
 {
     int retval = 0;
-    libusb_context* usbContext = 0;
-    libusb_device_handle* deviceHandle = 0;
+//    libusb_context* usbContext = 0;
+//    libusb_device_handle* deviceHandle = 0;
+    Nebula::HAL::Context* nebula = 0;
     boost::program_options::options_description general_options_description("Options", 140, 60);
     boost::program_options::variables_map vm;
     std::string colorArg, deviceArg;
@@ -236,7 +241,7 @@ int main(int argc, const char** argv)
                                                 boost::program_options::value<std::string>(),
                                                 "specify device")
                                                (Options::kNumberOfLeds,
-                                                boost::program_options::value<unsigned short>()->default_value(0),
+                                                boost::program_options::value<RT::u4>()->default_value(0),
                                                 "set number of leds")
                                                (Options::kColor,
                                                 boost::program_options::value<std::string>()->default_value(std::string("255,255,255")),
@@ -249,7 +254,7 @@ int main(int argc, const char** argv)
                                                 "set dynamic lighting effect rate")
                                                //(Options::kStrobe, "run in stroboscope mode")
                                                (Options::kDebug,
-                                                boost::program_options::value<int>()->default_value(0),
+                                                boost::program_options::value<RT::u4>()->default_value(0),
                                                 "stroboscope mode");
 
         if (argc < 2) optionsError("mode was not specified\n");
@@ -272,28 +277,58 @@ int main(int argc, const char** argv)
             default: break;
         }
 
-        auto usbRetval = libusb_init(&usbContext);
-        if (usbRetval != LIBUSB_SUCCESS) USB::error(0xB27D7F31, usbRetval);
+        std::set<Nebula::HAL::Device*> devices;
+        std::mutex devicesMutex;
 
-        libusb_set_debug(usbContext, vm["debug"].as<int>());
+        nebula = Nebula::HAL::createContext(
+            [&](Nebula::HAL::Device* device) -> void {
+                devicesMutex.lock();
+                devices.insert(device);
+                devicesMutex.unlock();
+            },
+            [&](Nebula::HAL::Device* device) -> void {
+                devicesMutex.lock();
+                devices.erase(device);
+                devicesMutex.unlock();
+            }
+        );
+        if (!nebula) RT::error(0xA733A758);
 
-        if (mode == Mode::list)
-            USB::listDevices(usbContext);
+//        auto usbRetval = libusb_init(&usbContext);
+//        if (usbRetval != LIBUSB_SUCCESS) USB::error(0xB27D7F31, usbRetval);
+
+//        libusb_set_debug(usbContext, vm["debug"].as<int>());
+
+        if (mode == Mode::list) {
+            devicesMutex.lock();
+            for (auto device : devices) {
+                uuid_string_t uuidString;
+                Nebula::HAL::Device::Info info = device->getInfo();
+                uuid_unparse(info.uuid, uuidString);
+                printf("device: bus = %u, uuid: %s\n", info.bus, uuidString);
+            }
+            //USB::listDevices(usbContext);
+            devicesMutex.unlock();
+        }
         else {
-            deviceHandle = USB::discoverDevice(usbContext, [](libusb_device* device, libusb_device_descriptor* deviceDescr) -> bool {
-                if (deviceDescr->idVendor == 0x16c0 && deviceDescr->idProduct == 0x5dc)
-                //if (deviceDescr->idVendor == 0xf182 && deviceDescr->idProduct == 0x3)
-                    return true;
+            auto firstDeviceIterator = devices.begin();
+            if (firstDeviceIterator != devices.end()) {
+           
+                /*deviceHandle = USB::discoverDevice(usbContext, [](libusb_device* device, libusb_device_descriptor* deviceDescr) -> bool {
+                    if (deviceDescr->idVendor == 0x16c0 && deviceDescr->idProduct == 0x5dc)
+                    //if (deviceDescr->idVendor == 0xf182 && deviceDescr->idProduct == 0x3)
+                        return true;
 
-                return false;
-            });
+                    return false;
+                });*/
 
-            if (deviceHandle) {
-                int activeConfiguration;
-                auto numberOfLeds = vm["nleds"].as<RT::u2>();
+            
+//                int activeConfiguration;
+                auto device = *firstDeviceIterator;
+                auto numberOfLeds = vm["nleds"].as<RT::u4>();
                 auto brightness = vm["brightness"].as<float>();
 
-                usbRetval = libusb_get_configuration(deviceHandle, &activeConfiguration);
+/*                usbRetval = libusb_get_configuration(deviceHandle, &activeConfiguration);
                 if (usbRetval != LIBUSB_SUCCESS) USB::error(0x83A06C0E, usbRetval);
 
                 printf("Configuration %u is active\n", activeConfiguration);
@@ -303,9 +338,12 @@ int main(int argc, const char** argv)
 
                 usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR, kRequestSetNumberOfLeds, numberOfLeds, 0, 0, 0, 500);
                 if (usbRetval != LIBUSB_SUCCESS) USB::error(0x2CDFB90F, usbRetval);
+*/
 
-                RGB<RT::u1>* leds = new RGB<RT::u1>[numberOfLeds];
-                if (!leds) RT::error(0x5DCA4D53);
+                device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds, &numberOfLeds, sizeof(numberOfLeds));
+
+                Nebula::Color::RGB<RT::u1>* colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
+                if (!colors) RT::error(0x5DCA4D53);
 
                 switch (mode) {
                     case Mode::continuous: {
@@ -315,23 +353,10 @@ int main(int argc, const char** argv)
                         r *= brightness;
                         g *= brightness;
                         b *= brightness;
-                        for (auto i = 0; i < numberOfLeds; i++) leds[convertLedNumber(i)].set(r, g, b);
+                        for (auto i = 0; i < numberOfLeds; i++) colors[convertLedNumber(i)].set(r, g, b);
+
+                        device->controlIn(Nebula::HAL::Device::Request::setColors, colors, numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>));
 /*
-for (auto i = 0; i < numberOfLeds; i++) leds[i].set(0, 0, 0);
-leds[0].set(200, 200, 200);
-
-                        RT::u1* leds2 = new RT::u1[3 * numberOfLeds];
-                        for (auto i = 0; i < numberOfLeds; i++) {
-                            leds2[3 * i + 0] = 0;
-                            leds2[3 * i + 1] = 0;
-                            leds2[3 * i + 2] = 0;
-                        }
-
-                        int i = 3;
-                            leds2[3 * i + 0] = 100;
-                            leds2[3 * i + 1] = 100;
-                            leds2[3 * i + 2] = 100;
-*/
                         usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
                                                             kRequestSetColors, 0, 0,
                                                             (RT::u1*)leds, numberOfLeds * 3,
@@ -340,14 +365,17 @@ leds[0].set(200, 200, 200);
                             delete [] leds;
                             USB::error(0x18804548, usbRetval);
                         }
+*/
                     }
                     break;
 
                     case Mode::rainbow: {
-                        HSV<float> hsv(0.0f, 1.0f, brightness);
+                        Nebula::Color::HSV<float> hsv(0.0f, 1.0f, brightness);
 
                         while (!didReceivedSIGTERM) {
-                            rotateColorCycle(leds, numberOfLeds, &hsv, vm["rate"].as<float>());
+                            rotateColorCycle(colors, numberOfLeds, &hsv, vm["rate"].as<float>());
+                            device->controlIn(Nebula::HAL::Device::Request::setColors, colors, numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>));
+/*
                             usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
                                                                 kRequestSetColors, 0, 0,
                                                                 (RT::u1*)leds, numberOfLeds * sizeof(RGB<RT::u1>),
@@ -356,6 +384,7 @@ leds[0].set(200, 200, 200);
                                 //delete [] leds;
                                 //USB::error(0xE963E77E, usbRetval);
                             }
+*/
                         }
                     }
                     break;
@@ -379,11 +408,11 @@ leds[0].set(200, 200, 200);
                             auto width = (RT::u4)CGImageGetWidth(image);
                             auto height = (RT::u4)CGImageGetHeight(image);
 
-                            auto colorTransformation = bind(transformSaturationOfRgbByFunction,
+                            auto colorTransformation = bind(Nebula::Color::transformSaturationOfRgb,
                                                             std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
                                                             [](float saturation) -> float { return powf(saturation, 0.3f); });
 
-                            computeAmbilightColors(leds, pixelData,
+                            computeAmbilightColors(colors, pixelData,
                                                    CGImageGetBytesPerRow(image), CGImageGetBitsPerPixel(image) >> 3,
                                                    width, height,
                                                    9, 9, 0, 12,
@@ -392,6 +421,9 @@ leds[0].set(200, 200, 200);
                             CFRelease(data);
                             CGImageRelease(image);
 
+                            Nebula::HAL::Device::ColorsIoctlData colorsIoctlData(colors, numberOfLeds);
+                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
+/*
                             usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
                                                                 kRequestSetColors, 0, 0,
                                                                 (RT::u1*)leds, numberOfLeds * 3,
@@ -400,7 +432,7 @@ leds[0].set(200, 200, 200);
                              //   delete [] leds;
                               //  USB::error(0xE963E77E, usbRetval);
                             }
-
+*/
                             count++;
                         }
 
@@ -414,7 +446,7 @@ leds[0].set(200, 200, 200);
                     default: break;
                 }
 
-                delete [] leds;
+                delete [] colors;
             }
             else
                 printf("No device found\n");
@@ -422,11 +454,11 @@ leds[0].set(200, 200, 200);
     }
     catch (RT::u4 ID) {
         printf("Error 0x%x\n", ID);
-    }
+    }/*
     catch (USB::Error e) {
         printf("USB Error %d (%s) at 0x%x\n", e.usbError, libusb_error_name(e.usbError), e.error);
         retval = -1;
-    }
+    }*/
     catch (OptionsError e) {
         printf("Invalid program invocation: %s", e.getMessage());
         print_usage(general_options_description);
@@ -436,8 +468,8 @@ leds[0].set(200, 200, 200);
         printf("Exception\n");
     }
 
-    if (deviceHandle) libusb_close(deviceHandle);
-    if (usbContext) libusb_exit(usbContext);
+    //if (deviceHandle) libusb_close(deviceHandle);
+    //if (usbContext) libusb_exit(usbContext);
 
     return retval;
 }
