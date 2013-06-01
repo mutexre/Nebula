@@ -224,19 +224,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Sources/CommandLine/ledctl.cpp"
-         timestampString = "391673818.9718"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "426"
-         endingLineNumber = "426"
-         landmarkName = "main(int argc, const char** argv)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
          timestampString = "391673877.452702"
          startingColumnNumber = "9223372036854775807"
@@ -245,6 +232,32 @@
          endingLineNumber = "87"
          landmarkName = "Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request)"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
+         timestampString = "391757809.338921"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/CommandLine/SignalHandling.cpp"
+         timestampString = "391760341.922352"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "25"
+         endingLineNumber = "25"
+         landmarkName = "signalHandler(int signal, struct __siginfo* info, void* ucontext)"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
    <SymbolicBreakpoints>

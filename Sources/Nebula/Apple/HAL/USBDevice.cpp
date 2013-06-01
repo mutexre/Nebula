@@ -1,4 +1,4 @@
-//#include <IOKit/IOKitLib.h>
+#include <signal.h>
 #include <IOKit/IOCFPlugIn.h>
 #include <IOKit/usb/IOUSBLib.h>
 #include <IOKit/IOMessage.h>
@@ -81,16 +81,25 @@ bool Nebula::Apple::HAL::USBDevice::isRequestSupported(Request request) {
 }
 
 void Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request) {
+    sigset_t maskSet;
+    sigset_t oldMaskSet;
+
+    sigfillset(&maskSet);
+    sigprocmask(SIG_SETMASK, &maskSet, &oldMaskSet);
+
     kern_return_t result = (*interface)->USBDeviceOpen(interface);
     if (result != kIOReturnSuccess)	RT::error(0xF7DC2912);
 
     result = (*interface)->DeviceRequest(interface, request);
-    if (result != kIOReturnSuccess) {
+    if (result == kIOReturnSuccess) {
         result = (*interface)->USBDeviceClose(interface);
         RT::error(0xA8D9D7E3);
     }
 
     result = (*interface)->USBDeviceClose(interface);
+    if (result != kIOReturnSuccess)	RT::error(0xC46D6830);
+
+    sigprocmask(SIG_SETMASK, &oldMaskSet, 0);
 }
 
 void Nebula::Apple::HAL::USBDevice::getUUID(uuid_t uuid, int uuidType) {

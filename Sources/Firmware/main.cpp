@@ -123,7 +123,7 @@ extern "C" USB_PUBLIC unsigned char usbFunctionWrite(uchar *data, uchar len) {
 
         case kRequestColors: {
             //debugLed(B); _delay_ms(100);
-            memcpy(leds + numberOfBytesProcessed, data, len);
+            memcpy(((unsigned char*)leds) + numberOfBytesProcessed, data, len);
             numberOfBytesProcessed += len;
 
             if (numberOfBytesProcessed >= currentRequest.wLength.word) {

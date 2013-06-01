@@ -23,6 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		922928C017599F4F00CA0535 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 922928BF17599F4F00CA0535 /* Plugin.h */; };
 		92470685175474FC0015456F /* ledctl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470682175474FC0015456F /* ledctl.cpp */; };
 		92470686175474FC0015456F /* SignalHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470683175474FC0015456F /* SignalHandling.cpp */; };
 		924706AA17547EAB0015456F /* RgbHsv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706A917547EAB0015456F /* RgbHsv.cpp */; };
@@ -103,6 +104,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		922928BF17599F4F00CA0535 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		92470681175474FC0015456F /* ledctl.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = ledctl.1; sourceTree = "<group>"; };
 		92470682175474FC0015456F /* ledctl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ledctl.cpp; sourceTree = "<group>"; };
 		92470683175474FC0015456F /* SignalHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandling.cpp; sourceTree = "<group>"; };
@@ -214,6 +216,14 @@
 			);
 			sourceTree = "<group>";
 		};
+		922928BE17599F3100CA0535 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				922928BF17599F4F00CA0535 /* Plugin.h */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
 		92470680175474FC0015456F /* Command Line Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +321,7 @@
 			children = (
 				92DB22801754694B007BF35B /* Nebula.h */,
 				924706C417563AD60015456F /* DeviceRequests.h */,
+				922928BE17599F3100CA0535 /* Plugin */,
 				92DB224A17539D24007BF35B /* HAL */,
 				92FB8B02174B2E800080F861 /* Color */,
 				92DB222117539BAF007BF35B /* Apple */,
@@ -387,6 +398,7 @@
 				92DB229617546976007BF35B /* HAL.h in Headers */,
 				92DB229717546976007BF35B /* USBDevice.h in Headers */,
 				924706C517563AD60015456F /* DeviceRequests.h in Headers */,
+				922928C017599F4F00CA0535 /* Plugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,11 +596,13 @@
 					/usr/local/Cellar/libusb/1.0.9/lib,
 					/tmp/build/Release,
 				);
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = leds;
 				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
 				RUNTIME_PATH = ../Runtime;
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Release;
 		};
@@ -653,11 +667,13 @@
 					/usr/local/Cellar/libusb/1.0.9/lib,
 					/tmp/build/Debug,
 				);
+				LINKER_DISPLAYS_MANGLED_NAMES = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = leds;
 				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
 				RUNTIME_PATH = ../Runtime;
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
 		};

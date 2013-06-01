@@ -3,15 +3,13 @@
 #include <time.h>
 #include <math.h>
 #include <functional>
+#include <sys/_structs.h>
 #include <uuid/uuid.h>
 #include <boost/program_options.hpp>
 #include <CoreFoundation/CoreFoundation.h>
 #include <ApplicationServices/ApplicationServices.h>
-//#include <libusb.h>
 #include <Nebula/Nebula.h>
 #include "SignalHandling.h"
-//#include "usb.h"
-//#include "DeviceRequests.h"
 
 #define STRINGOLIZER(a) #a
 #define VERSION_STRING(version, date, time) "Version " STRINGOLIZER(version) " built on " date " " time
@@ -223,17 +221,25 @@ void computeAmbilightColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixe
                                                                  colorTransformation);
 }
 
+void printDeviceInfo(Nebula::HAL::Device* device) {
+    Nebula::HAL::Device::Info info = device->getInfo();
+    uuid_string_t uuidString;
+    uuid_unparse(info.uuid, uuidString);
+    printf("device: bus = %u, uuid: %s\n", info.bus, uuidString);
+}
+
 int main(int argc, const char** argv)
 {
     int retval = 0;
-//    libusb_context* usbContext = 0;
-//    libusb_device_handle* deviceHandle = 0;
     Nebula::HAL::Context* nebula = 0;
     boost::program_options::options_description general_options_description("Options", 140, 60);
     boost::program_options::variables_map vm;
     std::string colorArg, deviceArg;
 
     try {
+        std::set<Nebula::HAL::Device*> devices;
+        std::mutex devicesMutex;
+
         installSignalHandlers();
 
         general_options_description.add_options()
@@ -277,9 +283,6 @@ int main(int argc, const char** argv)
             default: break;
         }
 
-        std::set<Nebula::HAL::Device*> devices;
-        std::mutex devicesMutex;
-
         nebula = Nebula::HAL::createContext(
             [&](Nebula::HAL::Device* device) -> void {
                 devicesMutex.lock();
@@ -294,56 +297,25 @@ int main(int argc, const char** argv)
         );
         if (!nebula) RT::error(0xA733A758);
 
-//        auto usbRetval = libusb_init(&usbContext);
-//        if (usbRetval != LIBUSB_SUCCESS) USB::error(0xB27D7F31, usbRetval);
-
-//        libusb_set_debug(usbContext, vm["debug"].as<int>());
-
         if (mode == Mode::list) {
             devicesMutex.lock();
-            for (auto device : devices) {
-                uuid_string_t uuidString;
-                Nebula::HAL::Device::Info info = device->getInfo();
-                uuid_unparse(info.uuid, uuidString);
-                printf("device: bus = %u, uuid: %s\n", info.bus, uuidString);
-            }
-            //USB::listDevices(usbContext);
+            for (auto device : devices) printDeviceInfo(device);
             devicesMutex.unlock();
         }
         else {
             auto firstDeviceIterator = devices.begin();
-            if (firstDeviceIterator != devices.end()) {
-           
-                /*deviceHandle = USB::discoverDevice(usbContext, [](libusb_device* device, libusb_device_descriptor* deviceDescr) -> bool {
-                    if (deviceDescr->idVendor == 0x16c0 && deviceDescr->idProduct == 0x5dc)
-                    //if (deviceDescr->idVendor == 0xf182 && deviceDescr->idProduct == 0x3)
-                        return true;
-
-                    return false;
-                });*/
-
-            
-//                int activeConfiguration;
+            if (firstDeviceIterator != devices.end())
+            {
                 auto device = *firstDeviceIterator;
                 auto numberOfLeds = vm["nleds"].as<RT::u4>();
                 auto brightness = vm["brightness"].as<float>();
 
-/*                usbRetval = libusb_get_configuration(deviceHandle, &activeConfiguration);
-                if (usbRetval != LIBUSB_SUCCESS) USB::error(0x83A06C0E, usbRetval);
+                auto colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
+                if (!colors) RT::error(0x5DCA4D53);
 
-                printf("Configuration %u is active\n", activeConfiguration);
-
-                usbRetval = libusb_set_configuration(deviceHandle, 0);
-                if (usbRetval != LIBUSB_SUCCESS) USB::error(0x6FB9CEAE, usbRetval);
-
-                usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR, kRequestSetNumberOfLeds, numberOfLeds, 0, 0, 0, 500);
-                if (usbRetval != LIBUSB_SUCCESS) USB::error(0x2CDFB90F, usbRetval);
-*/
+                Nebula::HAL::Device::ColorsIoctlData colorsIoctlData(colors, numberOfLeds);
 
                 device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds, &numberOfLeds, sizeof(numberOfLeds));
-
-                Nebula::Color::RGB<RT::u1>* colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
-                if (!colors) RT::error(0x5DCA4D53);
 
                 switch (mode) {
                     case Mode::continuous: {
@@ -355,36 +327,16 @@ int main(int argc, const char** argv)
                         b *= brightness;
                         for (auto i = 0; i < numberOfLeds; i++) colors[convertLedNumber(i)].set(r, g, b);
 
-                        device->controlIn(Nebula::HAL::Device::Request::setColors, colors, numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>));
-/*
-                        usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
-                                                            kRequestSetColors, 0, 0,
-                                                            (RT::u1*)leds, numberOfLeds * 3,
-                                                            500);
-                        if (usbRetval != LIBUSB_SUCCESS) {
-                            delete [] leds;
-                            USB::error(0x18804548, usbRetval);
-                        }
-*/
+                        device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
                     }
                     break;
 
                     case Mode::rainbow: {
                         Nebula::Color::HSV<float> hsv(0.0f, 1.0f, brightness);
 
-                        while (!didReceivedSIGTERM) {
+                        while (!doTerminate) {
                             rotateColorCycle(colors, numberOfLeds, &hsv, vm["rate"].as<float>());
-                            device->controlIn(Nebula::HAL::Device::Request::setColors, colors, numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>));
-/*
-                            usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
-                                                                kRequestSetColors, 0, 0,
-                                                                (RT::u1*)leds, numberOfLeds * sizeof(RGB<RT::u1>),
-                                                                500);
-                            if (usbRetval != LIBUSB_SUCCESS) {
-                                //delete [] leds;
-                                //USB::error(0xE963E77E, usbRetval);
-                            }
-*/
+                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
                         }
                     }
                     break;
@@ -395,7 +347,7 @@ int main(int argc, const char** argv)
 
                         time(&t1);
 
-                        while (!didReceivedSIGTERM) {
+                        while (!doTerminate) {
 
                             CGImageRef image = CGDisplayCreateImage(kCGDirectMainDisplay);
                             if (!image) RT::error(0x01BB3D1E);
@@ -410,29 +362,19 @@ int main(int argc, const char** argv)
 
                             auto colorTransformation = bind(Nebula::Color::transformSaturationOfRgb,
                                                             std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
-                                                            [](float saturation) -> float { return powf(saturation, 0.3f); });
+                                                            [=](float saturation) -> float { return powf(saturation, 0.3f); });
 
                             computeAmbilightColors(colors, pixelData,
                                                    CGImageGetBytesPerRow(image), CGImageGetBitsPerPixel(image) >> 3,
                                                    width, height,
                                                    9, 9, 0, 12,
                                                    colorTransformation);
-//printf("eee\n");
+
                             CFRelease(data);
                             CGImageRelease(image);
 
-                            Nebula::HAL::Device::ColorsIoctlData colorsIoctlData(colors, numberOfLeds);
                             device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
-/*
-                            usbRetval = libusb_control_transfer(deviceHandle, LIBUSB_REQUEST_TYPE_VENDOR,
-                                                                kRequestSetColors, 0, 0,
-                                                                (RT::u1*)leds, numberOfLeds * 3,
-                                                                500);
-                            if (usbRetval != LIBUSB_SUCCESS) {
-                             //   delete [] leds;
-                              //  USB::error(0xE963E77E, usbRetval);
-                            }
-*/
+
                             count++;
                         }
 
@@ -454,22 +396,18 @@ int main(int argc, const char** argv)
     }
     catch (RT::u4 ID) {
         printf("Error 0x%x\n", ID);
-    }/*
-    catch (USB::Error e) {
-        printf("USB Error %d (%s) at 0x%x\n", e.usbError, libusb_error_name(e.usbError), e.error);
-        retval = -1;
-    }*/
+    }
     catch (OptionsError e) {
         printf("Invalid program invocation: %s", e.getMessage());
         print_usage(general_options_description);
         retval = -1;
     }
     catch (...) {
-        printf("Exception\n");
+        printf("Exception occured\n");
+        RT::printBacktrace(STDERR_FILENO);
     }
 
-    //if (deviceHandle) libusb_close(deviceHandle);
-    //if (usbContext) libusb_exit(usbContext);
+    if (nebula) delete nebula;
 
     return retval;
 }
