@@ -69,17 +69,12 @@ void print_usage(boost::program_options::options_description& options) {
 
 namespace Options {
     auto kDevice = "device,d";
+    auto kChannel = "channel";
     auto kNumberOfLeds = "nleds,n";
     auto kBrightness = "brightness,b";
     auto kColor = "color,c";
-    auto kRainbow = "rainbow,r";
     auto kRate = "rate";
-    auto kStrobe = "color,c";
     auto kDebug = "debug,d";
-    auto kAmbilight = "ambilight,a";
-    auto kList = "list,l";
-    auto kHelp = "help,h";
-    auto kVersion = "version,v";
 };
 
 class OptionsError {
@@ -246,6 +241,9 @@ int main(int argc, const char** argv)
                                                (Options::kDevice,
                                                 boost::program_options::value<std::string>(),
                                                 "specify device")
+                                               (Options::kChannel,
+                                                boost::program_options::value<RT::u4>()->default_value(0),
+                                                "specify LED strip channel")
                                                (Options::kNumberOfLeds,
                                                 boost::program_options::value<RT::u4>()->default_value(0),
                                                 "set number of leds")
@@ -307,13 +305,14 @@ int main(int argc, const char** argv)
             if (firstDeviceIterator != devices.end())
             {
                 auto device = *firstDeviceIterator;
+                auto channel = vm["channel"].as<RT::u4>();
                 auto numberOfLeds = vm["nleds"].as<RT::u4>();
                 auto brightness = vm["brightness"].as<float>();
 
                 auto colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
                 if (!colors) RT::error(0x5DCA4D53);
 
-                Nebula::HAL::Device::ColorsIoctlData colorsIoctlData(colors, numberOfLeds);
+                Nebula::HAL::Device::IoctlParameters::Colors colorsIoctlParameters(channel, colors, numberOfLeds);
 
                 device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds, &numberOfLeds, sizeof(numberOfLeds));
 
@@ -327,7 +326,7 @@ int main(int argc, const char** argv)
                         b *= brightness;
                         for (auto i = 0; i < numberOfLeds; i++) colors[convertLedNumber(i)].set(r, g, b);
 
-                        device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
+                        device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
                     }
                     break;
 
@@ -336,7 +335,7 @@ int main(int argc, const char** argv)
 
                         while (!doTerminate) {
                             rotateColorCycle(colors, numberOfLeds, &hsv, vm["rate"].as<float>());
-                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
+                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
                         }
                     }
                     break;
@@ -373,7 +372,7 @@ int main(int argc, const char** argv)
                             CFRelease(data);
                             CGImageRelease(image);
 
-                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlData, sizeof(colorsIoctlData));
+                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
 
                             count++;
                         }

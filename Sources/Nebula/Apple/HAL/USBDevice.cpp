@@ -43,23 +43,9 @@ Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context) 
     }
 
     this->context = context;
-    this->interface = interface;
+    this->interface = interface;   
 
-    UInt16 vendor;
-    result = (*interface)->GetDeviceVendor(interface, &vendor);
-    if (result != kIOReturnSuccess) {
-//        result = (*interface)->USBDeviceClose(interface);
-        RT::error(0xDF5633AF);
-    }
-
-    UInt16 product;
-    result = (*interface)->GetDeviceProduct(interface, &product);
-    if (result != kIOReturnSuccess) {
-//        result = (*interface)->USBDevice(interface);
-        RT::error(0x285447CF);
-    }    
-
-    getUUID(info.uuid, kUuidTypeDevice);
+    getUUID(info.uuid, Nebula::Firmware::UuidType::device);
 
     info.bus = Bus::USB;
 }
@@ -91,7 +77,7 @@ void Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request) {
     if (result != kIOReturnSuccess)	RT::error(0xF7DC2912);
 
     result = (*interface)->DeviceRequest(interface, request);
-    if (result == kIOReturnSuccess) {
+    if (result != kIOReturnSuccess) {
         result = (*interface)->USBDeviceClose(interface);
         RT::error(0xA8D9D7E3);
     }
@@ -106,7 +92,7 @@ void Nebula::Apple::HAL::USBDevice::getUUID(uuid_t uuid, int uuidType) {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBIn, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestUUID;
+	request.bRequest = Nebula::Firmware::Request::UUID;
 	request.wValue = uuidType;
 	request.wIndex = 0;
 	request.wLength = sizeof(uuid_t);
@@ -120,7 +106,7 @@ void Nebula::Apple::HAL::USBDevice::setUUID(uuid_t uuid, int uuidType) {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBOut, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestUUID;
+	request.bRequest = Nebula::Firmware::Request::UUID;
 	request.wValue = uuidType;
 	request.wIndex = 0;
 	request.wLength = sizeof(uuid_t);
@@ -130,11 +116,11 @@ void Nebula::Apple::HAL::USBDevice::setUUID(uuid_t uuid, int uuidType) {
     controlRequest(&request);
 }
 
-void Nebula::Apple::HAL::USBDevice::getNumberOfLeds(RT::u4* value) {
+RT::u4 Nebula::Apple::HAL::USBDevice::getNumberOfChannels() {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBIn, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestNumberOfLeds;
+	request.bRequest = Nebula::Firmware::Request::numberOfChannels;
 	request.wValue = 0;
 	request.wIndex = 0;
 	request.wLength = 0;
@@ -142,15 +128,33 @@ void Nebula::Apple::HAL::USBDevice::getNumberOfLeds(RT::u4* value) {
 	request.pData = 0;
 
     controlRequest(&request);
+
+    return request.wValue;
 }
 
-void Nebula::Apple::HAL::USBDevice::setNumberOfLeds(RT::u4 value) {
+RT::u4 Nebula::Apple::HAL::USBDevice::getNumberOfLeds(RT::u4 channel) {
+    IOUSBDevRequest request;
+
+    request.bmRequestType = USBmakebmRequestType(kUSBIn, kUSBVendor, kUSBDevice);
+	request.bRequest = Nebula::Firmware::Request::numberOfLeds;
+	request.wValue = 0;
+	request.wIndex = channel;
+	request.wLength = 0;
+	request.wLenDone = 0;
+	request.pData = 0;
+
+    controlRequest(&request);
+
+    return request.wValue;
+}
+
+void Nebula::Apple::HAL::USBDevice::setNumberOfLeds(RT::u4 channel, RT::u4 value) {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBOut, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestNumberOfLeds;
+	request.bRequest = Nebula::Firmware::Request::numberOfLeds;
 	request.wValue = value;
-	request.wIndex = 0;
+	request.wIndex = channel;
 	request.wLength = 0;
 	request.wLenDone = 0;
 	request.pData = 0;
@@ -158,13 +162,13 @@ void Nebula::Apple::HAL::USBDevice::setNumberOfLeds(RT::u4 value) {
     controlRequest(&request);
 }
 
-void Nebula::Apple::HAL::USBDevice::getColors(Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
+void Nebula::Apple::HAL::USBDevice::getColors(RT::u4 channel, Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBIn, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestColors;
+	request.bRequest = Nebula::Firmware::Request::colors;
 	request.wValue = 0;
-	request.wIndex = 0;
+	request.wIndex = channel;
 	request.wLength = numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>);
 	request.wLenDone = 0;
 	request.pData = colors;
@@ -172,13 +176,13 @@ void Nebula::Apple::HAL::USBDevice::getColors(Color::RGB<RT::u1>* colors, RT::u4
     controlRequest(&request);
 }
 
-void Nebula::Apple::HAL::USBDevice::setColors(Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
+void Nebula::Apple::HAL::USBDevice::setColors(RT::u4 channel, Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
     IOUSBDevRequest request;
 
     request.bmRequestType = USBmakebmRequestType(kUSBOut, kUSBVendor, kUSBDevice);
-	request.bRequest = kRequestColors;
+	request.bRequest = Nebula::Firmware::Request::colors;
 	request.wValue = 0;
-	request.wIndex = 0;
+	request.wIndex = channel;
 	request.wLength = numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>);
 	request.wLenDone = 0;
 	request.pData = colors;
@@ -189,56 +193,89 @@ void Nebula::Apple::HAL::USBDevice::setColors(Color::RGB<RT::u1>* colors, RT::u4
 void Nebula::Apple::HAL::USBDevice::control(Request request, void* input, size_t inputSize, void* output, size_t outputSize) {
     switch (request) {
         case Request::getDeviceRevisionUUID:
-            if (outputSize >= sizeof(uuid_t)) getUUID((unsigned char*)output, kUuidTypeDeviceRevision);
-            else RT::error(0x93A00F7C);
+            if (outputSize >= sizeof(uuid_t))
+                getUUID((unsigned char*)output, Nebula::Firmware::UuidType::deviceRevision);
+            else
+                RT::error(0x93A00F7C);
         break;
 
         case Request::setDeviceRevisionUUID:
-            if (inputSize >= sizeof(uuid_t)) setUUID((unsigned char*)input, kUuidTypeDeviceRevision);
-            else RT::error(0xFAD12DA8);
+            if (inputSize >= sizeof(uuid_t))
+                setUUID((unsigned char*)input, Nebula::Firmware::UuidType::deviceRevision);
+            else
+                RT::error(0xFAD12DA8);
         break;
 
         case Request::getFirmwareRevisionUUID:
-            if (outputSize >= sizeof(uuid_t)) getUUID((unsigned char*)output, kUuidTypeFirmwareRevision);
-            else RT::error(0x93A00F7C);
+            if (outputSize >= sizeof(uuid_t))
+                getUUID((unsigned char*)output, Nebula::Firmware::UuidType::firmwareRevision);
+            else
+                RT::error(0x93A00F7C);
         break;
 
         case Request::setFirmwareRevisionUUID:
-            if (inputSize >= sizeof(uuid_t)) setUUID((unsigned char*)input, kUuidTypeFirmwareRevision);
-            else RT::error(0xFAD12DA8);
+            if (inputSize >= sizeof(uuid_t))
+                setUUID((unsigned char*)input, Nebula::Firmware::UuidType::firmwareRevision);
+            else
+                RT::error(0xFAD12DA8);
         break;
 
         case Request::getDeviceUUID:
-            if (outputSize >= sizeof(uuid_t)) getUUID((unsigned char*)output, kUuidTypeDevice);
-            else RT::error(0x93A00F7C);
+            if (outputSize >= sizeof(uuid_t))
+                getUUID((unsigned char*)output, Nebula::Firmware::UuidType::device);
+            else
+                RT::error(0x93A00F7C);
         break;
 
         case Request::setDeviceUUID:
-            if (inputSize >= sizeof(uuid_t)) setUUID((unsigned char*)input, kUuidTypeDevice);
-            else RT::error(0xFAD12DA8);
+            if (inputSize >= sizeof(uuid_t))
+                setUUID((unsigned char*)input, Nebula::Firmware::UuidType::device);
+            else
+                RT::error(0xFAD12DA8);
+        break;
+
+        case Request::getNumberOfChannels:
+            if (outputSize >= sizeof(RT::u4))
+                *((RT::u4*)output) = getNumberOfChannels();
+            else
+                RT::error(0x0120AC4E);
         break;
 
         case Request::getNumberOfLeds:
-            if (outputSize >= sizeof(RT::u4)) getNumberOfLeds((RT::u4*)output);
-            else RT::error(0x0120AC4E);
+            if (inputSize >= sizeof(RT::u4) && outputSize >= sizeof(RT::u4)) {
+                auto channel = *((RT::u4*)input);
+                *((RT::u4*)output) = getNumberOfLeds(channel);
+            }
+            else
+                RT::error(0x0120AC4E);
         break;
 
         case Request::setNumberOfLeds:
-            if (inputSize >= sizeof(RT::u4)) setNumberOfLeds(*((RT::u4*)input));
-            else RT::error(0x75959D83);
+            if (inputSize >= sizeof(Nebula::HAL::Device::IoctlParameters::SetNumberOfLeds)) {
+                auto data = (Nebula::HAL::Device::IoctlParameters::SetNumberOfLeds*)input;
+                setNumberOfLeds(data->channel, data->numberOfLeds);
+            }
+            else
+                RT::error(0x75959D83);
         break;
 
         case Request::getColors: {
-            auto data = (Nebula::HAL::Device::ColorsIoctlData*)output;
-            if (outputSize >= sizeof(Nebula::HAL::Device::ColorsIoctlData)) getColors(data->colors, data->numberOfLeds);
-            else RT::error(0x879E9348);
+            if (outputSize >= sizeof(Nebula::HAL::Device::IoctlParameters::Colors)) {
+                auto data = (Nebula::HAL::Device::IoctlParameters::Colors*)output;
+                getColors(data->channel, data->colors, data->numberOfLeds);
+            }
+            else
+                RT::error(0x879E9348);
         }
         break;
 
         case Request::setColors: {
-            auto data = (Nebula::HAL::Device::ColorsIoctlData*)input;
-            if (inputSize >= sizeof(Nebula::HAL::Device::ColorsIoctlData)) setColors(data->colors, data->numberOfLeds);
-            else RT::error(0xBD01D774);
+            if (inputSize >= sizeof(Nebula::HAL::Device::IoctlParameters::Colors)) {
+                auto data = (Nebula::HAL::Device::IoctlParameters::Colors*)input;
+                setColors(data->channel, data->colors, data->numberOfLeds);
+            }
+            else
+                RT::error(0xBD01D774);
         }
         break;
     }

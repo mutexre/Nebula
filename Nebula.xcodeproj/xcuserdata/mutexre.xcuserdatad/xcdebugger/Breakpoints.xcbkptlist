@@ -186,45 +186,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
-         timestampString = "391669238.483641"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
-         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
-         timestampString = "391669267.931873"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "49"
-         endingLineNumber = "49"
-         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
-         timestampString = "391669324.221557"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
-         landmarkName = "Nebula::Apple::HAL::USBDevice::USBDevice(io_service_t device, Context* context)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Sources/Nebula/Apple/HAL/USBDevice.cpp"
          timestampString = "391673877.452702"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"

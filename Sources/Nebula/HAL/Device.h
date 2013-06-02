@@ -34,21 +34,39 @@ namespace Nebula
                 setFirmwareRevisionUUID,
                 getDeviceUUID,
                 setDeviceUUID,
+                getNumberOfChannels,
                 getNumberOfLeds,
                 setNumberOfLeds,
                 getColors,
                 setColors
             };
 
-            struct ColorsIoctlData {
-                Nebula::Color::RGB<RT::u1>* colors;
-                RT::u4 numberOfLeds;
+            struct IoctlParameters {
+                struct SetNumberOfLeds {
+                    RT::u4 channel;
+                    RT::u4 numberOfLeds;
 
-                ColorsIoctlData() : colors(0), numberOfLeds(0) {}
-                ColorsIoctlData(Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
-                    this->colors = colors;
-                    this->numberOfLeds = numberOfLeds;
-                }
+                    SetNumberOfLeds() : channel(0), numberOfLeds(0) {}
+
+                    SetNumberOfLeds(RT::u4 channel, RT::u4 numberOfLeds) {
+                        this->channel = channel;
+                        this->numberOfLeds = numberOfLeds;
+                    }
+                };
+
+                struct Colors {
+                    RT::u4 channel;
+                    Nebula::Color::RGB<RT::u1>* colors;
+                    RT::u4 numberOfLeds;
+
+                    Colors() : colors(0), numberOfLeds(0) {}
+
+                    Colors(RT::u4 channel, Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
+                        this->channel = channel;
+                        this->colors = colors;
+                        this->numberOfLeds = numberOfLeds;
+                    }
+                };
             };
 
             class UnsupportedRequestException;

@@ -12,7 +12,7 @@ namespace Nebula {
 #include <Nebula/Color/HSV.h>
 #include <Nebula/Color/RGB.h>
 #include <Nebula/Color/RgbHsv.h>
-#include <Nebula/DeviceRequests.h>
+#include <Nebula/Firmware/DeviceRequests.h>
 #include <Nebula/HAL/Device.h>
 #include <Nebula/HAL/Context.h>
 

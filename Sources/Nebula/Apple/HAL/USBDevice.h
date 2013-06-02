@@ -22,10 +22,11 @@ namespace Nebula
                 void controlRequest(IOUSBDevRequest*);
                 void getUUID(uuid_t, int uuidType);
                 void setUUID(uuid_t, int uuidType);
-                void getNumberOfLeds(RT::u4*);
-                void setNumberOfLeds(RT::u4);
-                void getColors(Color::RGB<RT::u1>*, RT::u4 numberOfLeds);
-                void setColors(Color::RGB<RT::u1>*, RT::u4 numberOfLeds);
+                RT::u4 getNumberOfChannels();
+                RT::u4 getNumberOfLeds(RT::u4 channel);
+                void setNumberOfLeds(RT::u4 channel, RT::u4 n);
+                void getColors(RT::u4 channel, Color::RGB<RT::u1>*, RT::u4 n);
+                void setColors(RT::u4 channel, Color::RGB<RT::u1>*, RT::u4 n);
 
             public:
                 USBDevice(io_service_t device, Context* context);

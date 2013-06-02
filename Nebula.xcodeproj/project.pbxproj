@@ -39,7 +39,6 @@
 		924706C11755B6060015456F /* variables_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706B61755B6060015456F /* variables_map.cpp */; };
 		924706C21755B6060015456F /* winmain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706B71755B6060015456F /* winmain.cpp */; };
 		924706C31755B62D0015456F /* libLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DB222D17539C3E007BF35B /* libLibrary.a */; };
-		924706C517563AD60015456F /* DeviceRequests.h in Headers */ = {isa = PBXBuildFile; fileRef = 924706C417563AD60015456F /* DeviceRequests.h */; };
 		924AFDF1174603A40000B619 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */; };
 		929E8537174D133B002DE715 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8536174D133B002DE715 /* CoreGraphics.framework */; };
 		929E853A174E2BEE002DE715 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8530174D130D002DE715 /* CoreFoundation.framework */; };
@@ -109,34 +108,6 @@
 		92470682175474FC0015456F /* ledctl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ledctl.cpp; sourceTree = "<group>"; };
 		92470683175474FC0015456F /* SignalHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandling.cpp; sourceTree = "<group>"; };
 		92470684175474FC0015456F /* SignalHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalHandling.h; sourceTree = "<group>"; };
-		924706881754752E0015456F /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9247068C1754752E0015456F /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		9247068F1754752E0015456F /* asmcommon.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = asmcommon.inc; sourceTree = "<group>"; };
-		924706901754752E0015456F /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
-		924706911754752E0015456F /* CommercialLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommercialLicense.txt; sourceTree = "<group>"; };
-		924706921754752E0015456F /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		924706931754752E0015456F /* oddebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = oddebug.c; sourceTree = "<group>"; };
-		924706941754752E0015456F /* oddebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oddebug.h; sourceTree = "<group>"; };
-		924706951754752E0015456F /* oddebug.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = oddebug.o; sourceTree = "<group>"; };
-		924706961754752E0015456F /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
-		924706971754752E0015456F /* USB-ID-FAQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USB-ID-FAQ.txt"; sourceTree = "<group>"; };
-		924706981754752E0015456F /* USB-IDs-for-free.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USB-IDs-for-free.txt"; sourceTree = "<group>"; };
-		924706991754752E0015456F /* usbconfig-prototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbconfig-prototype.h"; sourceTree = "<group>"; };
-		9247069A1754752E0015456F /* usbconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbconfig.h; sourceTree = "<group>"; };
-		9247069B1754752E0015456F /* usbdrv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = usbdrv.c; sourceTree = "<group>"; };
-		9247069C1754752E0015456F /* usbdrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbdrv.h; sourceTree = "<group>"; };
-		9247069D1754752E0015456F /* usbdrv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrv.o; sourceTree = "<group>"; };
-		9247069E1754752E0015456F /* usbdrvasm.asm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm.asm; path = usbdrvasm.asm; sourceTree = "<group>"; };
-		9247069F1754752E0015456F /* usbdrvasm.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrvasm.o; sourceTree = "<group>"; };
-		924706A01754752E0015456F /* usbdrvasm.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = usbdrvasm.S; sourceTree = "<group>"; };
-		924706A11754752E0015456F /* usbdrvasm12.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm12.inc; sourceTree = "<group>"; };
-		924706A21754752E0015456F /* usbdrvasm128.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm128.inc; sourceTree = "<group>"; };
-		924706A31754752E0015456F /* usbdrvasm15.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm15.inc; sourceTree = "<group>"; };
-		924706A41754752E0015456F /* usbdrvasm16.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm16.inc; sourceTree = "<group>"; };
-		924706A51754752E0015456F /* usbdrvasm165.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm165.inc; sourceTree = "<group>"; };
-		924706A61754752E0015456F /* usbdrvasm18-crc.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = "usbdrvasm18-crc.inc"; sourceTree = "<group>"; };
-		924706A71754752E0015456F /* usbdrvasm20.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm20.inc; sourceTree = "<group>"; };
-		924706A81754752E0015456F /* usbportability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbportability.h; sourceTree = "<group>"; };
 		924706A917547EAB0015456F /* RgbHsv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RgbHsv.cpp; path = Sources/Nebula/Color/RgbHsv.cpp; sourceTree = "<group>"; };
 		924706AD1755B6060015456F /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
 		924706AE1755B6060015456F /* config_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config_file.cpp; sourceTree = "<group>"; };
@@ -149,9 +120,47 @@
 		924706B51755B6060015456F /* value_semantic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = value_semantic.cpp; sourceTree = "<group>"; };
 		924706B61755B6060015456F /* variables_map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = variables_map.cpp; sourceTree = "<group>"; };
 		924706B71755B6060015456F /* winmain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = winmain.cpp; sourceTree = "<group>"; };
-		924706C417563AD60015456F /* DeviceRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceRequests.h; path = Sources/Nebula/DeviceRequests.h; sourceTree = "<group>"; };
 		924AFDE51745ED020000B619 /* leds */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = leds; sourceTree = BUILT_PRODUCTS_DIR; };
 		924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libusb-1.0.0.dylib"; path = "../../../../../usr/local/Cellar/libusb/1.0.9/lib/libusb-1.0.0.dylib"; sourceTree = "<group>"; };
+		92724B9D175B6FF100606E61 /* Channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Channel.cpp; sourceTree = "<group>"; };
+		92724B9E175B6FF100606E61 /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		92724BA0175B6FF100606E61 /* Channels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Channels.cpp; sourceTree = "<group>"; };
+		92724BA2175B6FF100606E61 /* Debug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Debug.cpp; sourceTree = "<group>"; };
+		92724BA3175B6FF100606E61 /* Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Debug.h; sourceTree = "<group>"; };
+		92724BA5175B6FF100606E61 /* Firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firmware.h; sourceTree = "<group>"; };
+		92724BA6175B6FF100606E61 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		92724BA9175B6FF100606E61 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		92724BAB175B6FF100606E61 /* asmcommon.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = asmcommon.inc; sourceTree = "<group>"; };
+		92724BAC175B6FF100606E61 /* Changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changelog.txt; sourceTree = "<group>"; };
+		92724BAD175B6FF100606E61 /* CommercialLicense.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CommercialLicense.txt; sourceTree = "<group>"; };
+		92724BAE175B6FF100606E61 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		92724BAF175B6FF100606E61 /* oddebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = oddebug.c; sourceTree = "<group>"; };
+		92724BB0175B6FF100606E61 /* oddebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oddebug.h; sourceTree = "<group>"; };
+		92724BB1175B6FF100606E61 /* oddebug.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = oddebug.o; sourceTree = "<group>"; };
+		92724BB2175B6FF100606E61 /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
+		92724BB3175B6FF100606E61 /* USB-ID-FAQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USB-ID-FAQ.txt"; sourceTree = "<group>"; };
+		92724BB4175B6FF100606E61 /* USB-IDs-for-free.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "USB-IDs-for-free.txt"; sourceTree = "<group>"; };
+		92724BB5175B6FF100606E61 /* usbconfig-prototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "usbconfig-prototype.h"; sourceTree = "<group>"; };
+		92724BB6175B6FF100606E61 /* usbconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbconfig.h; sourceTree = "<group>"; };
+		92724BB7175B6FF100606E61 /* usbdrv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = usbdrv.c; sourceTree = "<group>"; };
+		92724BB8175B6FF100606E61 /* usbdrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbdrv.h; sourceTree = "<group>"; };
+		92724BB9175B6FF100606E61 /* usbdrv.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrv.o; sourceTree = "<group>"; };
+		92724BBA175B6FF100606E61 /* usbdrvasm.asm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm.asm; path = usbdrvasm.asm; sourceTree = "<group>"; };
+		92724BBB175B6FF100606E61 /* usbdrvasm.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = usbdrvasm.o; sourceTree = "<group>"; };
+		92724BBC175B6FF100606E61 /* usbdrvasm.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = usbdrvasm.S; sourceTree = "<group>"; };
+		92724BBD175B6FF100606E61 /* usbdrvasm12.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm12.inc; sourceTree = "<group>"; };
+		92724BBE175B6FF100606E61 /* usbdrvasm128.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm128.inc; sourceTree = "<group>"; };
+		92724BBF175B6FF100606E61 /* usbdrvasm15.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm15.inc; sourceTree = "<group>"; };
+		92724BC0175B6FF100606E61 /* usbdrvasm16.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm16.inc; sourceTree = "<group>"; };
+		92724BC1175B6FF100606E61 /* usbdrvasm165.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm165.inc; sourceTree = "<group>"; };
+		92724BC2175B6FF100606E61 /* usbdrvasm18-crc.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = "usbdrvasm18-crc.inc"; sourceTree = "<group>"; };
+		92724BC3175B6FF100606E61 /* usbdrvasm20.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm20.inc; sourceTree = "<group>"; };
+		92724BC4175B6FF100606E61 /* usbportability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbportability.h; sourceTree = "<group>"; };
+		92724BC6175B6FF100606E61 /* Driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cpp; sourceTree = "<group>"; };
+		92724BC7175B6FF100606E61 /* Driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
+		92724BC8175B728200606E61 /* DeviceRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceRequests.h; sourceTree = "<group>"; };
+		92724BC9175B76FD00606E61 /* Driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cpp; sourceTree = "<group>"; };
+		92724BCA175B76FD00606E61 /* Driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
 		929E8530174D130D002DE715 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		929E8532174D1324002DE715 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		929E8534174D1330002DE715 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
@@ -236,50 +245,6 @@
 			path = Sources/CommandLine;
 			sourceTree = "<group>";
 		};
-		924706871754752E0015456F /* Firmware */ = {
-			isa = PBXGroup;
-			children = (
-				9247068C1754752E0015456F /* Makefile */,
-				924706881754752E0015456F /* main.cpp */,
-				9247068E1754752E0015456F /* usbdrv */,
-			);
-			name = Firmware;
-			path = Sources/Firmware;
-			sourceTree = "<group>";
-		};
-		9247068E1754752E0015456F /* usbdrv */ = {
-			isa = PBXGroup;
-			children = (
-				9247068F1754752E0015456F /* asmcommon.inc */,
-				924706901754752E0015456F /* Changelog.txt */,
-				924706911754752E0015456F /* CommercialLicense.txt */,
-				924706921754752E0015456F /* License.txt */,
-				924706931754752E0015456F /* oddebug.c */,
-				924706941754752E0015456F /* oddebug.h */,
-				924706951754752E0015456F /* oddebug.o */,
-				924706961754752E0015456F /* Readme.txt */,
-				924706971754752E0015456F /* USB-ID-FAQ.txt */,
-				924706981754752E0015456F /* USB-IDs-for-free.txt */,
-				924706991754752E0015456F /* usbconfig-prototype.h */,
-				9247069A1754752E0015456F /* usbconfig.h */,
-				9247069B1754752E0015456F /* usbdrv.c */,
-				9247069C1754752E0015456F /* usbdrv.h */,
-				9247069D1754752E0015456F /* usbdrv.o */,
-				9247069E1754752E0015456F /* usbdrvasm.asm */,
-				9247069F1754752E0015456F /* usbdrvasm.o */,
-				924706A01754752E0015456F /* usbdrvasm.S */,
-				924706A11754752E0015456F /* usbdrvasm12.inc */,
-				924706A21754752E0015456F /* usbdrvasm128.inc */,
-				924706A31754752E0015456F /* usbdrvasm15.inc */,
-				924706A41754752E0015456F /* usbdrvasm16.inc */,
-				924706A51754752E0015456F /* usbdrvasm165.inc */,
-				924706A61754752E0015456F /* usbdrvasm18-crc.inc */,
-				924706A71754752E0015456F /* usbdrvasm20.inc */,
-				924706A81754752E0015456F /* usbportability.h */,
-			);
-			path = usbdrv;
-			sourceTree = "<group>";
-		};
 		924706AB1755B6060015456F /* boost */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,16 +281,78 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		92724B9C175B6FF100606E61 /* Firmware */ = {
+			isa = PBXGroup;
+			children = (
+				92724BA9175B6FF100606E61 /* Makefile */,
+				92724BA5175B6FF100606E61 /* Firmware.h */,
+				92724BC8175B728200606E61 /* DeviceRequests.h */,
+				92724BA3175B6FF100606E61 /* Debug.h */,
+				92724BA2175B6FF100606E61 /* Debug.cpp */,
+				92724B9E175B6FF100606E61 /* Channel.h */,
+				92724B9D175B6FF100606E61 /* Channel.cpp */,
+				92724BA0175B6FF100606E61 /* Channels.cpp */,
+				92724BCA175B76FD00606E61 /* Driver.h */,
+				92724BC9175B76FD00606E61 /* Driver.cpp */,
+				92724BA6175B6FF100606E61 /* main.cpp */,
+				92724BC5175B6FF100606E61 /* VUSB */,
+				92724BAA175B6FF100606E61 /* usbdrv */,
+			);
+			name = Firmware;
+			path = Sources/Nebula/Firmware;
+			sourceTree = "<group>";
+		};
+		92724BAA175B6FF100606E61 /* usbdrv */ = {
+			isa = PBXGroup;
+			children = (
+				92724BAB175B6FF100606E61 /* asmcommon.inc */,
+				92724BAC175B6FF100606E61 /* Changelog.txt */,
+				92724BAD175B6FF100606E61 /* CommercialLicense.txt */,
+				92724BAE175B6FF100606E61 /* License.txt */,
+				92724BAF175B6FF100606E61 /* oddebug.c */,
+				92724BB0175B6FF100606E61 /* oddebug.h */,
+				92724BB1175B6FF100606E61 /* oddebug.o */,
+				92724BB2175B6FF100606E61 /* Readme.txt */,
+				92724BB3175B6FF100606E61 /* USB-ID-FAQ.txt */,
+				92724BB4175B6FF100606E61 /* USB-IDs-for-free.txt */,
+				92724BB5175B6FF100606E61 /* usbconfig-prototype.h */,
+				92724BB6175B6FF100606E61 /* usbconfig.h */,
+				92724BB7175B6FF100606E61 /* usbdrv.c */,
+				92724BB8175B6FF100606E61 /* usbdrv.h */,
+				92724BB9175B6FF100606E61 /* usbdrv.o */,
+				92724BBA175B6FF100606E61 /* usbdrvasm.asm */,
+				92724BBB175B6FF100606E61 /* usbdrvasm.o */,
+				92724BBC175B6FF100606E61 /* usbdrvasm.S */,
+				92724BBD175B6FF100606E61 /* usbdrvasm12.inc */,
+				92724BBE175B6FF100606E61 /* usbdrvasm128.inc */,
+				92724BBF175B6FF100606E61 /* usbdrvasm15.inc */,
+				92724BC0175B6FF100606E61 /* usbdrvasm16.inc */,
+				92724BC1175B6FF100606E61 /* usbdrvasm165.inc */,
+				92724BC2175B6FF100606E61 /* usbdrvasm18-crc.inc */,
+				92724BC3175B6FF100606E61 /* usbdrvasm20.inc */,
+				92724BC4175B6FF100606E61 /* usbportability.h */,
+			);
+			path = usbdrv;
+			sourceTree = "<group>";
+		};
+		92724BC5175B6FF100606E61 /* VUSB */ = {
+			isa = PBXGroup;
+			children = (
+				92724BC7175B6FF100606E61 /* Driver.h */,
+				92724BC6175B6FF100606E61 /* Driver.cpp */,
+			);
+			path = VUSB;
+			sourceTree = "<group>";
+		};
 		92DB217617539B5D007BF35B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				92DB22801754694B007BF35B /* Nebula.h */,
-				924706C417563AD60015456F /* DeviceRequests.h */,
 				922928BE17599F3100CA0535 /* Plugin */,
 				92DB224A17539D24007BF35B /* HAL */,
 				92FB8B02174B2E800080F861 /* Color */,
 				92DB222117539BAF007BF35B /* Apple */,
-				924706871754752E0015456F /* Firmware */,
+				92724B9C175B6FF100606E61 /* Firmware */,
 				92470680175474FC0015456F /* Command Line Utility */,
 			);
 			name = Sources;
@@ -397,7 +424,6 @@
 				92DB229517546976007BF35B /* Context.h in Headers */,
 				92DB229617546976007BF35B /* HAL.h in Headers */,
 				92DB229717546976007BF35B /* USBDevice.h in Headers */,
-				924706C517563AD60015456F /* DeviceRequests.h in Headers */,
 				922928C017599F4F00CA0535 /* Plugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +438,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = /Users/mutexre/Projects/Nebula/Sources/Firmware;
+			buildWorkingDirectory = /Users/mutexre/Projects/Nebula/Sources/Nebula/Firmware;
 			dependencies = (
 			);
 			name = Firmware;
@@ -585,7 +611,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/usr/local/include/libusb-1.0",
 					"${RUNTIME_PATH}/Sources",
 					"${BOOST_PATH}",
 					"${RAPIDXML_PATH}",
@@ -656,7 +681,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					"/usr/local/include/libusb-1.0",
 					"${RUNTIME_PATH}/Sources",
 					"${BOOST_PATH}",
 					"${RAPIDXML_PATH}",
