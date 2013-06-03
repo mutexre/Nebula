@@ -3,7 +3,6 @@
 #include <time.h>
 #include <math.h>
 #include <functional>
-#include <sys/_structs.h>
 #include <uuid/uuid.h>
 #include <boost/program_options.hpp>
 #include <CoreFoundation/CoreFoundation.h>
@@ -312,9 +311,12 @@ int main(int argc, const char** argv)
                 auto colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
                 if (!colors) RT::error(0x5DCA4D53);
 
+                Nebula::HAL::Device::IoctlParameters::SetNumberOfLeds setNumberOfLedsIoctlParameters(channel, numberOfLeds);
                 Nebula::HAL::Device::IoctlParameters::Colors colorsIoctlParameters(channel, colors, numberOfLeds);
 
-                device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds, &numberOfLeds, sizeof(numberOfLeds));
+                device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds,
+                                  &setNumberOfLedsIoctlParameters,
+                                  sizeof(setNumberOfLedsIoctlParameters));
 
                 switch (mode) {
                     case Mode::continuous: {
@@ -326,7 +328,9 @@ int main(int argc, const char** argv)
                         b *= brightness;
                         for (auto i = 0; i < numberOfLeds; i++) colors[convertLedNumber(i)].set(r, g, b);
 
-                        device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
+                        device->controlIn(Nebula::HAL::Device::Request::setColors,
+                                          &colorsIoctlParameters,
+                                          sizeof(colorsIoctlParameters));
                     }
                     break;
 
@@ -335,7 +339,9 @@ int main(int argc, const char** argv)
 
                         while (!doTerminate) {
                             rotateColorCycle(colors, numberOfLeds, &hsv, vm["rate"].as<float>());
-                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
+                            device->controlIn(Nebula::HAL::Device::Request::setColors,
+                                              &colorsIoctlParameters,
+                                              sizeof(colorsIoctlParameters));
                         }
                     }
                     break;
@@ -372,7 +378,9 @@ int main(int argc, const char** argv)
                             CFRelease(data);
                             CGImageRelease(image);
 
-                            device->controlIn(Nebula::HAL::Device::Request::setColors, &colorsIoctlParameters, sizeof(colorsIoctlParameters));
+                            device->controlIn(Nebula::HAL::Device::Request::setColors,
+                                              &colorsIoctlParameters,
+                                              sizeof(colorsIoctlParameters));
 
                             count++;
                         }

@@ -203,9 +203,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "90"
-         endingLineNumber = "90"
-         landmarkName = "Nebula::Apple::HAL::USBDevice::controlRequest(IOUSBDevRequest* request)"
-         landmarkType = "5">
+         endingLineNumber = "90">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -219,6 +217,19 @@
          endingLineNumber = "25"
          landmarkName = "signalHandler(int signal, struct __siginfo* info, void* ucontext)"
          landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Sources/Nebula/Apple/HAL/Context.cpp"
+         timestampString = "391879876.213748"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "167"
+         endingLineNumber = "167"
+         landmarkName = "Nebula::Apple::HAL::Context::Context(std::function&lt;void (Nebula::HAL::Device*)&gt; onDeviceAddition, std::function&lt;void (Nebula::HAL::Device*)&gt; onDeviceRemoval)"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
    <SymbolicBreakpoints>

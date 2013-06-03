@@ -11,7 +11,7 @@ namespace Nebula
 {
     namespace Firmware
     {
-        class Driver
+        class RunLoop
         {
         public:
             typedef unsigned char uuid_t[16];
@@ -26,12 +26,12 @@ namespace Nebula
             Channel channels[NUMBER_OF_CHANNELS];
             unsigned int numberOfBytesProcessed;
 
-            void initChannels(Channel* channels);
+            virtual void initChannels(Channel* channels);
             virtual void iterate();
 
         public:
-            Driver();
-            void runLoop();
+            virtual void init();
+            virtual void run();
         };
     }
 }

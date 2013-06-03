@@ -59,7 +59,7 @@ namespace Nebula
                     Nebula::Color::RGB<RT::u1>* colors;
                     RT::u4 numberOfLeds;
 
-                    Colors() : colors(0), numberOfLeds(0) {}
+                    Colors() : channel(0), colors(0), numberOfLeds(0) {}
 
                     Colors(RT::u4 channel, Color::RGB<RT::u1>* colors, RT::u4 numberOfLeds) {
                         this->channel = channel;

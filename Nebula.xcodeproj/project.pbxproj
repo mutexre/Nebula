@@ -156,11 +156,11 @@
 		92724BC2175B6FF100606E61 /* usbdrvasm18-crc.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = "usbdrvasm18-crc.inc"; sourceTree = "<group>"; };
 		92724BC3175B6FF100606E61 /* usbdrvasm20.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = usbdrvasm20.inc; sourceTree = "<group>"; };
 		92724BC4175B6FF100606E61 /* usbportability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbportability.h; sourceTree = "<group>"; };
-		92724BC6175B6FF100606E61 /* Driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cpp; sourceTree = "<group>"; };
-		92724BC7175B6FF100606E61 /* Driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
+		92724BC6175B6FF100606E61 /* RunLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunLoop.cpp; sourceTree = "<group>"; };
+		92724BC7175B6FF100606E61 /* RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoop.h; sourceTree = "<group>"; };
 		92724BC8175B728200606E61 /* DeviceRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceRequests.h; sourceTree = "<group>"; };
-		92724BC9175B76FD00606E61 /* Driver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Driver.cpp; sourceTree = "<group>"; };
-		92724BCA175B76FD00606E61 /* Driver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Driver.h; sourceTree = "<group>"; };
+		92724BC9175B76FD00606E61 /* RunLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunLoop.cpp; sourceTree = "<group>"; };
+		92724BCA175B76FD00606E61 /* RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoop.h; sourceTree = "<group>"; };
 		929E8530174D130D002DE715 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		929E8532174D1324002DE715 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		929E8534174D1330002DE715 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
@@ -292,8 +292,8 @@
 				92724B9E175B6FF100606E61 /* Channel.h */,
 				92724B9D175B6FF100606E61 /* Channel.cpp */,
 				92724BA0175B6FF100606E61 /* Channels.cpp */,
-				92724BCA175B76FD00606E61 /* Driver.h */,
-				92724BC9175B76FD00606E61 /* Driver.cpp */,
+				92724BCA175B76FD00606E61 /* RunLoop.h */,
+				92724BC9175B76FD00606E61 /* RunLoop.cpp */,
 				92724BA6175B6FF100606E61 /* main.cpp */,
 				92724BC5175B6FF100606E61 /* VUSB */,
 				92724BAA175B6FF100606E61 /* usbdrv */,
@@ -338,8 +338,8 @@
 		92724BC5175B6FF100606E61 /* VUSB */ = {
 			isa = PBXGroup;
 			children = (
-				92724BC7175B6FF100606E61 /* Driver.h */,
-				92724BC6175B6FF100606E61 /* Driver.cpp */,
+				92724BC7175B6FF100606E61 /* RunLoop.h */,
+				92724BC6175B6FF100606E61 /* RunLoop.cpp */,
 			);
 			path = VUSB;
 			sourceTree = "<group>";
