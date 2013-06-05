@@ -3,10 +3,10 @@
 #include <time.h>
 #include <math.h>
 #include <functional>
+#include <thread>
 #include <uuid/uuid.h>
 #include <boost/program_options.hpp>
 #include <CoreFoundation/CoreFoundation.h>
-#include <ApplicationServices/ApplicationServices.h>
 #include <Nebula/Nebula.h>
 #include "SignalHandling.h"
 
@@ -17,29 +17,10 @@ RT::u2 convertLedNumber(RT::u2 n) {
     return 3 * (n / 3) + (2 - n % 3);
 }
 
-void rotateColorCycle(Nebula::Color::RGB<RT::u1>* leds, RT::u2 numberOfLeds, Nebula::Color::HSV<float>* hsv, float rate)
-{
-    if (hsv->h < 360.0f) {
-        hsv->h += rate;
-
-        for (int i = 0; i < numberOfLeds; i++) {
-            float h = hsv->h + float(i) * (360.0f / float(numberOfLeds));
-            if (h >= 360.0f) h -= 360.0f;
-
-            Nebula::Color::HSV<float> _hsv(h, hsv->s, hsv->v);
-            Nebula::Color::RGB<float> rgb = hsv2rgb(_hsv);
-
-            leds[convertLedNumber(i)].set(255 * rgb.r, 255 * rgb.g, 255 * rgb.b);
-        }
-    }
-    else
-        hsv->h = 0.0;
-}
-
-const char* modes[6] = { "help", "version", "list", "continuous", "rainbow", "ambilight" };
+const char* modes[] = { "help", "version", "list", "continuous", "rainbow", "ambilight", "run" };
 
 enum class Mode {
-    none = -1, help = 0, version = 1, list = 2, continuous = 3, rainbow = 4, ambilight = 5
+    none = -1, help = 0, version = 1, list = 2, continuous = 3, rainbow = 4, ambilight = 5, run = 6
 };
 
 Mode determineMode(const char* modeArg) {
@@ -70,13 +51,14 @@ namespace Options {
     auto kDevice = "device,d";
     auto kChannel = "channel";
     auto kNumberOfLeds = "nleds,n";
+    auto kFrequency = "freq,f";
     auto kBrightness = "brightness,b";
     auto kColor = "color,c";
     auto kRate = "rate";
     auto kDebug = "debug,d";
 };
 
-class OptionsError {
+class OptionsError : public std::exception {
 private:
     const char* message;
 
@@ -92,129 +74,6 @@ void optionsError(const char* message) {
     throw OptionsError(message);
 }
 
-const char* getColorSpaceModelString(CGColorSpaceModel model) {
-    switch (model) {
-        case kCGColorSpaceModelUnknown: return "Unknown";
-        case kCGColorSpaceModelMonochrome: return "Monochrome";
-        case kCGColorSpaceModelRGB: return "RGB";
-        case kCGColorSpaceModelCMYK: return "CMYK";
-        case kCGColorSpaceModelLab: return "LAB";
-        case kCGColorSpaceModelDeviceN: return "DeviceN";
-        case kCGColorSpaceModelIndexed: return "Indexed";
-        case kCGColorSpaceModelPattern: return "Pattern";
-    };
-    return "None";
-}
-
-void printCGColorSpaceInfo(CGColorSpaceRef colorSpace) {
-    
-    printf("number of components: %lu\n", CGColorSpaceGetNumberOfComponents(colorSpace));
-    printf("model: %s\n", getColorSpaceModelString(CGColorSpaceGetModel(colorSpace)));
-}
-
-const char* getCGImageAlphaInfoString(CGImageAlphaInfo alphaInfo) {
-    switch (alphaInfo) {
-        case kCGImageAlphaNone: return "None";
-        case kCGImageAlphaPremultipliedLast: return "Prumultiplied Last (E.g.: premultiplied RGBA)";  /* For example, premultiplied RGBA */
-        case kCGImageAlphaPremultipliedFirst: return "Premultiplied First (E.g.: premultiplied ARGB"; /* For example, premultiplied ARGB */
-        case kCGImageAlphaLast: return "Last (E.g.: non-premultiplied RGBA)";                         /* For example, non-premultiplied RGBA */
-        case kCGImageAlphaFirst: return "First (E.g.: non-premultiplied ARGB)";                       /* For example, non-premultiplied ARGB */
-        case kCGImageAlphaNoneSkipLast: return "None, skip last (E.g.: RGBX)";                        /* For example, RBGX. */
-        case kCGImageAlphaNoneSkipFirst: return "None, skip first (E.g.: XRGB)";                      /* For example, XRGB. */
-        case kCGImageAlphaOnly: return "Alpha Only";
-    };
-    return "Unknown";
-}
-
-void printCGImageInfo(CGImageRef image) {
-    printf("bits per component: %lu\n", CGImageGetBitsPerComponent(image));
-    printf("bits per pixel: %lu\n", CGImageGetBitsPerPixel(image));
-    printf("bytes per row: %lu\n", CGImageGetBytesPerRow(image));
-    printf("alpha info: %s\n", getCGImageAlphaInfoString(CGImageGetAlphaInfo(image)));
-    printCGColorSpaceInfo(CGImageGetColorSpace(image));
-}
-
-void getPixelData(CGImageRef imageRef, RT::u1* pixelData) {
-    auto width = CGImageGetWidth(imageRef);
-    auto height = CGImageGetHeight(imageRef);
-    auto colorSpace = CGColorSpaceCreateDeviceRGB();
-    RT::u4 bytesPerPixel = 4;
-    auto bytesPerRow = bytesPerPixel * width;
-    RT::u4 bitsPerComponent = 8;
-
-    CGContextRef context = CGBitmapContextCreate(pixelData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    CGContextRelease(context);
-}
-
-Nebula::Color::RGB<RT::u1> computeAvarageColor(const RT::u1* pixelData,
-                                               size_t bytesPerRow, size_t bytesPerPixel,
-                                               size_t rectX, size_t rectY,
-                                               size_t rectWidth, size_t rectHeight,
-                                               std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
-{
-    RT::u4 rSum = 0, gSum = 0, bSum = 0;
-
-    for (auto y = 0; y < rectHeight; y++) {
-        auto rowDataOffset = bytesPerRow * (rectY + y) + bytesPerPixel * rectX;
-        for (auto x = 0; x < rectWidth; x += 1) {
-            auto pixelDataOffset = rowDataOffset + bytesPerPixel * x;
-            rSum += pixelData[pixelDataOffset + 2];
-            gSum += pixelData[pixelDataOffset + 1];
-            bSum += pixelData[pixelDataOffset + 0];
-        }
-    }
-
-    auto numberOfPixels = float(rectWidth * rectHeight);
-//    printf("%f\n", (float(rSum) / numberOfPixels) / 255.0f);
-
-    return colorTransformation((float(rSum) / numberOfPixels) / 255.0f,
-                               (float(gSum) / numberOfPixels) / 255.0f,
-                               (float(bSum) / numberOfPixels) / 255.0f);
-}
-
-RT::u4 calculateBarSize(RT::u4 n, RT::u4 i, RT::u4 size, float a) {
-    return 70.0f;
-    auto half_n = 0.5f * float(n);
-    auto f = (1.0f - a) * (1.0f - fabs(float(i) - half_n) / half_n) + a;
-    return (size / 2) * f;
-}
-
-void computeAmbilightColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixelData,
-                            size_t bytesPerRow, size_t bytesPerPixel,
-                            RT::u4 width, RT::u4 height,
-                            RT::u2 left, RT::u2 right,
-                            RT::u2 bottom, RT::u2 top,
-                            std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
-{
-    RT::u4 ledIndex = 0;
-
-    for (auto y = left - 1; y >= 0; y--)
-        leds[convertLedNumber(ledIndex++)] = computeAvarageColor(pixelData,
-                                                                 bytesPerRow, bytesPerPixel,
-                                                                 0, y * height / left,
-                                                                 calculateBarSize(left, y, width, 0.3f), height / left,
-                                                                 colorTransformation);
-
-    for (auto x = 0; x < top; x++)
-        leds[convertLedNumber(ledIndex++)] = computeAvarageColor(pixelData,
-                                                                 bytesPerRow, bytesPerPixel,
-                                                                 x * width / top, 0,
-                                                                 width / top, calculateBarSize(top, x, height, 0.3f),
-                                                                 colorTransformation);
-
-    for (auto y = 0; y < right; y++)
-        leds[convertLedNumber(ledIndex++)] = computeAvarageColor(pixelData,
-                                                                 bytesPerRow, bytesPerPixel,
-                                                                 width - 200, y * height / right,
-                                                                 calculateBarSize(right, y, width, 0.3f), height / right,
-                                                                 colorTransformation);
-}
-
 void printDeviceInfo(Nebula::HAL::Device* device) {
     Nebula::HAL::Device::Info info = device->getInfo();
     uuid_string_t uuidString;
@@ -222,10 +81,103 @@ void printDeviceInfo(Nebula::HAL::Device* device) {
     printf("device: bus = %u, uuid: %s\n", info.bus, uuidString);
 }
 
+struct TimerCallbackParameters {
+    Nebula::HAL::Device* device;
+    Nebula::HAL::Device::IoctlParameters::Colors* colorsIoctlParameters;
+    std::mutex* colorsMutex;
+
+    TimerCallbackParameters(Nebula::HAL::Device* device,
+                            Nebula::HAL::Device::IoctlParameters::Colors* colorsIoctlParameters,
+                            std::mutex* colorsMutex)
+    {
+        this->device = device;
+        this->colorsIoctlParameters = colorsIoctlParameters;
+        this->colorsMutex = colorsMutex;
+    }
+};
+
+void observerCallback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void* info) {
+    if (doTerminate)
+        CFRunLoopStop(CFRunLoopGetCurrent());
+}
+
+template <typename mutex_type>
+void guardedMemcpy(const void* source, void* destination, size_t size, mutex_type* mutex) {
+    std::lock_guard<mutex_type> lock(*mutex);
+    memcpy(destination, source, size);
+}
+
+void timerCallBack(CFRunLoopTimerRef timer, void* info) {
+    auto data = (TimerCallbackParameters*)info;
+    std::unique_ptr<Nebula::Color::RGB<RT::u1>> localColors(new Nebula::Color::RGB<RT::u1>[data->colorsIoctlParameters->numberOfLeds]);
+
+    guardedMemcpy(data->colorsIoctlParameters->colors,
+                  localColors.get(),
+                  data->colorsIoctlParameters->numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>),
+                  data->colorsMutex);
+
+    Nebula::HAL::Device::IoctlParameters::Colors colorsIoctlParameters = *(data->colorsIoctlParameters);
+    colorsIoctlParameters.colors = localColors.get();
+
+    (data->device)->controlIn(Nebula::HAL::Device::Request::setColors,
+                              &colorsIoctlParameters,
+                              sizeof(Nebula::HAL::Device::IoctlParameters::Colors));
+}
+
+void runLoop(TimerCallbackParameters* timerCallbackParameters, float frequency)
+{
+    CFRunLoopObserverContext observerContext;
+    observerContext.version = 0;
+    observerContext.info = 0;
+    observerContext.retain = 0;
+    observerContext.release = 0;
+    observerContext.copyDescription = 0;
+
+    auto observer = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopBeforeTimers, true, 0, observerCallback, &observerContext);
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopCommonModes);
+
+    CFRunLoopTimerContext timerContext;
+    timerContext.version = 0;
+    timerContext.info = timerCallbackParameters;
+    timerContext.retain = 0;
+    timerContext.release = 0;
+    timerContext.copyDescription = 0;
+
+    auto timer = CFRunLoopTimerCreate(kCFAllocatorDefault,
+                                      CFAbsoluteTimeGetCurrent(),
+                                      1.0 / frequency,
+                                      0, 0,
+                                      timerCallBack,
+                                      &timerContext);
+
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer, kCFRunLoopCommonModes);
+
+    CFRunLoopRun();
+}
+
+Nebula::Generator* createGenerator(Mode mode, boost::program_options::variables_map vm) {
+    auto numberOfLeds = vm["nleds"].as<RT::u4>();
+    switch (mode) {
+        case Mode::rainbow:
+            return new Rainbow(numberOfLeds,
+                               Nebula::Color::HSV<float>(0.0f, 1.0f, vm["brightness"].as<float>()),
+                               vm["rate"].as<float>());
+
+        case Mode::ambilight:
+            return new Ambilight(numberOfLeds);
+
+        case Mode::run:
+            return new RunningLight(numberOfLeds, vm["nn"].as<RT::u4>());
+
+        default: RT::error(0x39AC18F5);
+    }
+
+    return 0;
+}
+
 int main(int argc, const char** argv)
 {
     int retval = 0;
-    Nebula::HAL::Context* nebula = 0;
     boost::program_options::options_description general_options_description("Options", 140, 60);
     boost::program_options::variables_map vm;
     std::string colorArg, deviceArg;
@@ -241,11 +193,17 @@ int main(int argc, const char** argv)
                                                 boost::program_options::value<std::string>(),
                                                 "specify device")
                                                (Options::kChannel,
-                                                boost::program_options::value<RT::u4>()->default_value(0),
+                                                boost::program_options::value<RT::s4>()->default_value(0),
                                                 "specify LED strip channel")
                                                (Options::kNumberOfLeds,
-                                                boost::program_options::value<RT::u4>()->default_value(0),
+                                                boost::program_options::value<RT::s4>()->default_value(0),
                                                 "set number of leds")
+                                               ("nn",
+                                                boost::program_options::value<RT::s4>()->default_value(100),
+                                                "set running light increment")
+                                               (Options::kFrequency,
+                                                boost::program_options::value<float>()->default_value(24.0f),
+                                                "set number of LEDs color updates per second")
                                                (Options::kColor,
                                                 boost::program_options::value<std::string>()->default_value(std::string("255,255,255")),
                                                 "set LEDs color")
@@ -263,7 +221,8 @@ int main(int argc, const char** argv)
         if (argc < 2) optionsError("mode was not specified\n");
 
         auto mode = determineMode(argv[1]);
-        if (mode == Mode::none) optionsError("invalid mode was specified\n");
+        if (mode == Mode::none)
+            optionsError("invalid mode was specified\n");
 
         boost::program_options::store(boost::program_options::command_line_parser(argc - 1, argv + 1).options(general_options_description).run(), vm, true);
         boost::program_options::notify(vm);
@@ -280,39 +239,43 @@ int main(int argc, const char** argv)
             default: break;
         }
 
-        nebula = Nebula::HAL::createContext(
-            [&](Nebula::HAL::Device* device) -> void {
-                devicesMutex.lock();
-                devices.insert(device);
-                devicesMutex.unlock();
-            },
-            [&](Nebula::HAL::Device* device) -> void {
-                devicesMutex.lock();
-                devices.erase(device);
-                devicesMutex.unlock();
-            }
-        );
-        if (!nebula) RT::error(0xA733A758);
+        auto onDeviceAddition = [&](Nebula::HAL::Device* device) -> void {
+            std::lock_guard<std::mutex> lock(devicesMutex);
+            devices.insert(device);
+        };
+
+        auto onDeviceRemoval = [&](Nebula::HAL::Device* device) -> void {
+            std::lock_guard<std::mutex> lock(devicesMutex);
+            devices.erase(device);
+        };
+
+        std::unique_ptr<Nebula::HAL::Context> nebula(Nebula::HAL::createContext(onDeviceAddition, onDeviceRemoval));
 
         if (mode == Mode::list) {
-            devicesMutex.lock();
+            std::lock_guard<std::mutex> lock(devicesMutex);
             for (auto device : devices) printDeviceInfo(device);
-            devicesMutex.unlock();
         }
         else {
             auto firstDeviceIterator = devices.begin();
             if (firstDeviceIterator != devices.end())
             {
                 auto device = *firstDeviceIterator;
-                auto channel = vm["channel"].as<RT::u4>();
-                auto numberOfLeds = vm["nleds"].as<RT::u4>();
+                auto channel = vm["channel"].as<RT::s4>();
+                auto numberOfLeds = vm["nleds"].as<RT::s4>();
+                auto frequency = vm["freq"].as<float>();
                 auto brightness = vm["brightness"].as<float>();
+                bool animate = false;
 
-                auto colors = new Nebula::Color::RGB<RT::u1>[numberOfLeds];
-                if (!colors) RT::error(0x5DCA4D53);
+                if (channel < 0) optionsError("channel should be >= 0\n");
+                if (numberOfLeds <= 0) optionsError("number of LEDs should be > 0\n");
+                if (frequency <= 0.0f) optionsError("frequency should be > 0\n");
+                if (brightness < 0.0f) optionsError("brightness should be >= 0\n");
+
+                std::unique_ptr<Nebula::Color::RGB<RT::u1>> colors(new Nebula::Color::RGB<RT::u1>[numberOfLeds]);
+                std::mutex colorsMutex;
 
                 Nebula::HAL::Device::IoctlParameters::SetNumberOfLeds setNumberOfLedsIoctlParameters(channel, numberOfLeds);
-                Nebula::HAL::Device::IoctlParameters::Colors colorsIoctlParameters(channel, colors, numberOfLeds);
+                Nebula::HAL::Device::IoctlParameters::Colors colorsIoctlParameters(channel, colors.get(), numberOfLeds);
 
                 device->controlIn(Nebula::HAL::Device::Request::setNumberOfLeds,
                                   &setNumberOfLedsIoctlParameters,
@@ -326,7 +289,7 @@ int main(int argc, const char** argv)
                         r *= brightness;
                         g *= brightness;
                         b *= brightness;
-                        for (auto i = 0; i < numberOfLeds; i++) colors[convertLedNumber(i)].set(r, g, b);
+                        for (auto i = 0; i < numberOfLeds; i++) colors.get()[convertLedNumber(i)].set(r, g, b);
 
                         device->controlIn(Nebula::HAL::Device::Request::setColors,
                                           &colorsIoctlParameters,
@@ -334,68 +297,48 @@ int main(int argc, const char** argv)
                     }
                     break;
 
-                    case Mode::rainbow: {
-                        Nebula::Color::HSV<float> hsv(0.0f, 1.0f, brightness);
-
-                        while (!doTerminate) {
-                            rotateColorCycle(colors, numberOfLeds, &hsv, vm["rate"].as<float>());
-                            device->controlIn(Nebula::HAL::Device::Request::setColors,
-                                              &colorsIoctlParameters,
-                                              sizeof(colorsIoctlParameters));
-                        }
-                    }
-                    break;
-
-                    case Mode::ambilight: {
-                        RT::u4 count = 0;
-                        time_t t1, t2;
-
-                        time(&t1);
-
-                        while (!doTerminate) {
-
-                            CGImageRef image = CGDisplayCreateImage(kCGDirectMainDisplay);
-                            if (!image) RT::error(0x01BB3D1E);
-
-                            //printCGImageInfo(image);
-
-                            CFDataRef data = CGDataProviderCopyData(CGImageGetDataProvider(image));
-                            const RT::u1* pixelData =  CFDataGetBytePtr(data);
-
-                            auto width = (RT::u4)CGImageGetWidth(image);
-                            auto height = (RT::u4)CGImageGetHeight(image);
-
-                            auto colorTransformation = bind(Nebula::Color::transformSaturationOfRgb,
-                                                            std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
-                                                            [=](float saturation) -> float { return powf(saturation, 0.3f); });
-
-                            computeAmbilightColors(colors, pixelData,
-                                                   CGImageGetBytesPerRow(image), CGImageGetBitsPerPixel(image) >> 3,
-                                                   width, height,
-                                                   9, 9, 0, 12,
-                                                   colorTransformation);
-
-                            CFRelease(data);
-                            CGImageRelease(image);
-
-                            device->controlIn(Nebula::HAL::Device::Request::setColors,
-                                              &colorsIoctlParameters,
-                                              sizeof(colorsIoctlParameters));
-
-                            count++;
-                        }
-
-                        time(&t2);
-
-                        auto fps = float(count) / float(t2 - t1);
-                        printf("fps=%f\n", fps);
-                    }
+                    case Mode::rainbow:
+                    case Mode::ambilight:
+                    case Mode::run:
+                        animate = true;
                     break;
 
                     default: break;
                 }
 
-                delete [] colors;
+                if (animate) {
+                    std::unique_ptr<Nebula::Generator> generator(createGenerator(mode, vm));
+                    TimerCallbackParameters timerCallbackParameters(device, &colorsIoctlParameters, &colorsMutex);
+
+                    std::thread pluginThread([&]() -> void {
+                        std::unique_ptr<Nebula::Color::RGB<RT::u1>> localColors(new Nebula::Color::RGB<RT::u1>[numberOfLeds]);
+                        time_t t1, t2;
+                        RT::u8 count = 0;
+
+                        time(&t1);
+                        while (!doTerminate) {
+                            generator->generate(localColors.get());
+                            guardedMemcpy(localColors.get(), colors.get(),
+                                          numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>),
+                                          &colorsMutex);
+                            count++;
+                        }
+                        time(&t2);
+
+                        if (count > 0)
+                            printf("updates per second = %f\n", float(count) / float(t2 - t1));
+                    });
+
+                    try {
+                        runLoop(&timerCallbackParameters, frequency);
+                    }
+                    catch(...) {
+                        pluginThread.join();
+                        throw;
+                    }
+
+                    pluginThread.join();
+                }
             }
             else
                 printf("No device found\n");
@@ -411,10 +354,7 @@ int main(int argc, const char** argv)
     }
     catch (...) {
         printf("Exception occured\n");
-        RT::printBacktrace(STDERR_FILENO);
     }
-
-    if (nebula) delete nebula;
 
     return retval;
 }

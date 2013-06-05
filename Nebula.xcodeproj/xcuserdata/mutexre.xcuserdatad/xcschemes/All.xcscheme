@@ -60,6 +60,22 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "ambilight"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "run"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-nn=100"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "rainbow"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--freq=30"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

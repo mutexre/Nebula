@@ -4,7 +4,7 @@
 #include <avr/eeprom.h>
 #include <Nebula/Firmware/Debug.h>
 #include <Nebula/Firmware/Channel.h>
-#include <Nebula/Firmware/DeviceRequests.h>
+#include <Nebula/Firmware/Requests.h>
 #include <Nebula/Firmware/RunLoop.h>
 
 namespace Nebula {

@@ -9,6 +9,15 @@ namespace Nebula
         class RGB
         {
         public:
+            static RGB<T> black() {
+                return RGB(T(0), T(0), T(0));
+            };
+
+            static RGB<T> gray(T x) {
+                return RGB(x, x, x);
+            };
+
+        public:
             T r, g, b;
 
             RGB() {

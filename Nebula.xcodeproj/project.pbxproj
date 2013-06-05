@@ -23,7 +23,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		922928C017599F4F00CA0535 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 922928BF17599F4F00CA0535 /* Plugin.h */; };
+		922BB67A175CD5A500A36B70 /* Plugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 922BB679175CD5A500A36B70 /* Plugin.h */; };
+		922BB681175CE08700A36B70 /* Rainbow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 922BB67F175CE08700A36B70 /* Rainbow.cpp */; };
+		922BB682175CE08700A36B70 /* Rainbow.h in Headers */ = {isa = PBXBuildFile; fileRef = 922BB680175CE08700A36B70 /* Rainbow.h */; };
+		922BB685175E2F7600A36B70 /* Ambilight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 922BB683175E2F7600A36B70 /* Ambilight.cpp */; };
+		922BB686175E2F7600A36B70 /* Ambilight.h in Headers */ = {isa = PBXBuildFile; fileRef = 922BB684175E2F7600A36B70 /* Ambilight.h */; };
 		92470685175474FC0015456F /* ledctl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470682175474FC0015456F /* ledctl.cpp */; };
 		92470686175474FC0015456F /* SignalHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470683175474FC0015456F /* SignalHandling.cpp */; };
 		924706AA17547EAB0015456F /* RgbHsv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706A917547EAB0015456F /* RgbHsv.cpp */; };
@@ -42,6 +46,8 @@
 		924AFDF1174603A40000B619 /* libusb-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 924AFDF0174603A40000B619 /* libusb-1.0.0.dylib */; };
 		929E8537174D133B002DE715 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8536174D133B002DE715 /* CoreGraphics.framework */; };
 		929E853A174E2BEE002DE715 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8530174D130D002DE715 /* CoreFoundation.framework */; };
+		92C84C40175F855300522AA6 /* RunningLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92C84C3E175F855300522AA6 /* RunningLight.cpp */; };
+		92C84C41175F855300522AA6 /* RunningLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C3F175F855300522AA6 /* RunningLight.h */; };
 		92DB216C1752591A007BF35B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DB216B1752591A007BF35B /* IOKit.framework */; };
 		92DB22811754694B007BF35B /* Nebula.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB22801754694B007BF35B /* Nebula.h */; };
 		92DB228617546958007BF35B /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228217546958007BF35B /* Context.h */; };
@@ -103,7 +109,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		922928BF17599F4F00CA0535 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		922BB679175CD5A500A36B70 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plugin.h; path = Sources/Nebula/Plugin.h; sourceTree = "<group>"; };
+		922BB67F175CE08700A36B70 /* Rainbow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rainbow.cpp; path = Sources/Nebula/Plugins/Rainbow.cpp; sourceTree = "<group>"; };
+		922BB680175CE08700A36B70 /* Rainbow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rainbow.h; path = Sources/Nebula/Plugins/Rainbow.h; sourceTree = "<group>"; };
+		922BB683175E2F7600A36B70 /* Ambilight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ambilight.cpp; path = Sources/Nebula/Plugins/Ambilight.cpp; sourceTree = "<group>"; };
+		922BB684175E2F7600A36B70 /* Ambilight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ambilight.h; path = Sources/Nebula/Plugins/Ambilight.h; sourceTree = "<group>"; };
 		92470681175474FC0015456F /* ledctl.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = ledctl.1; sourceTree = "<group>"; };
 		92470682175474FC0015456F /* ledctl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ledctl.cpp; sourceTree = "<group>"; };
 		92470683175474FC0015456F /* SignalHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandling.cpp; sourceTree = "<group>"; };
@@ -158,7 +168,7 @@
 		92724BC4175B6FF100606E61 /* usbportability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usbportability.h; sourceTree = "<group>"; };
 		92724BC6175B6FF100606E61 /* RunLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunLoop.cpp; sourceTree = "<group>"; };
 		92724BC7175B6FF100606E61 /* RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoop.h; sourceTree = "<group>"; };
-		92724BC8175B728200606E61 /* DeviceRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceRequests.h; sourceTree = "<group>"; };
+		92724BC8175B728200606E61 /* Requests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Requests.h; sourceTree = "<group>"; };
 		92724BC9175B76FD00606E61 /* RunLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunLoop.cpp; sourceTree = "<group>"; };
 		92724BCA175B76FD00606E61 /* RunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoop.h; sourceTree = "<group>"; };
 		929E8530174D130D002DE715 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -166,6 +176,8 @@
 		929E8534174D1330002DE715 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
 		929E8536174D133B002DE715 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		929E8538174E2BD5002DE715 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		92C84C3E175F855300522AA6 /* RunningLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RunningLight.cpp; path = Sources/Nebula/Plugins/RunningLight.cpp; sourceTree = "<group>"; };
+		92C84C3F175F855300522AA6 /* RunningLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RunningLight.h; path = Sources/Nebula/Plugins/RunningLight.h; sourceTree = "<group>"; };
 		92DB216B1752591A007BF35B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		92DB222D17539C3E007BF35B /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DB22801754694B007BF35B /* Nebula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nebula.h; path = Sources/Nebula/Nebula.h; sourceTree = "<group>"; };
@@ -225,12 +237,18 @@
 			);
 			sourceTree = "<group>";
 		};
-		922928BE17599F3100CA0535 /* Plugin */ = {
+		922928BE17599F3100CA0535 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				922928BF17599F4F00CA0535 /* Plugin.h */,
+				922BB679175CD5A500A36B70 /* Plugin.h */,
+				922BB680175CE08700A36B70 /* Rainbow.h */,
+				922BB67F175CE08700A36B70 /* Rainbow.cpp */,
+				922BB684175E2F7600A36B70 /* Ambilight.h */,
+				922BB683175E2F7600A36B70 /* Ambilight.cpp */,
+				92C84C3F175F855300522AA6 /* RunningLight.h */,
+				92C84C3E175F855300522AA6 /* RunningLight.cpp */,
 			);
-			name = Plugin;
+			name = Plugins;
 			sourceTree = "<group>";
 		};
 		92470680175474FC0015456F /* Command Line Utility */ = {
@@ -286,7 +304,7 @@
 			children = (
 				92724BA9175B6FF100606E61 /* Makefile */,
 				92724BA5175B6FF100606E61 /* Firmware.h */,
-				92724BC8175B728200606E61 /* DeviceRequests.h */,
+				92724BC8175B728200606E61 /* Requests.h */,
 				92724BA3175B6FF100606E61 /* Debug.h */,
 				92724BA2175B6FF100606E61 /* Debug.cpp */,
 				92724B9E175B6FF100606E61 /* Channel.h */,
@@ -348,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				92DB22801754694B007BF35B /* Nebula.h */,
-				922928BE17599F3100CA0535 /* Plugin */,
+				922928BE17599F3100CA0535 /* Plugins */,
 				92DB224A17539D24007BF35B /* HAL */,
 				92FB8B02174B2E800080F861 /* Color */,
 				92DB222117539BAF007BF35B /* Apple */,
@@ -424,7 +442,10 @@
 				92DB229517546976007BF35B /* Context.h in Headers */,
 				92DB229617546976007BF35B /* HAL.h in Headers */,
 				92DB229717546976007BF35B /* USBDevice.h in Headers */,
-				922928C017599F4F00CA0535 /* Plugin.h in Headers */,
+				922BB67A175CD5A500A36B70 /* Plugin.h in Headers */,
+				922BB682175CE08700A36B70 /* Rainbow.h in Headers */,
+				922BB686175E2F7600A36B70 /* Ambilight.h in Headers */,
+				92C84C41175F855300522AA6 /* RunningLight.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +562,9 @@
 				92DB229817546976007BF35B /* Context.cpp in Sources */,
 				92DB229917546976007BF35B /* USBDevice.cpp in Sources */,
 				924706AA17547EAB0015456F /* RgbHsv.cpp in Sources */,
+				922BB681175CE08700A36B70 /* Rainbow.cpp in Sources */,
+				922BB685175E2F7600A36B70 /* Ambilight.cpp in Sources */,
+				92C84C40175F855300522AA6 /* RunningLight.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

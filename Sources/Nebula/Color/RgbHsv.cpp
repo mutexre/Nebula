@@ -107,3 +107,16 @@ Nebula::Color::transformSaturationOfRgb(float r, float g, float b, std::function
                        (RT::u4(rgb.g * 255.0f)) & 0xff,
                        (RT::u4(rgb.b * 255.0f)) & 0xff);
 }
+
+void Nebula::Color::generateColorCycle(HSV<float> hsv, RGB<RT::u1>* output, RT::u4 numberOfLeds)
+{
+    for (int i = 0; i < numberOfLeds; i++) {
+        float h = hsv.h + float(i) * (360.0f / float(numberOfLeds));
+        if (h >= 360.0f) h -= 360.0f;
+
+        HSV<float> _hsv(h, hsv.s, hsv.v);
+        RGB<float> rgb = hsv2rgb(_hsv);
+
+        output[/*convertLedNumber(i)*/i].set(255 * rgb.r, 255 * rgb.g, 255 * rgb.b);
+    }
+}
