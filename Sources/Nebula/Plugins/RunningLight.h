@@ -8,7 +8,7 @@ private:
 
 public:
     RunningLight(RT::u4 numberOfLeds, RT::u4 n);
-    virtual void generate(Nebula::Color::RGB<RT::u1>* output);
+    virtual void generate(Color::RGB<RT::u1>* output);
 };
 
 #endif

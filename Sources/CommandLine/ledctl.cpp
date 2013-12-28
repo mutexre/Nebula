@@ -17,7 +17,7 @@ RT::u2 convertLedNumber(RT::u2 n) {
     return 3 * (n / 3) + (2 - n % 3);
 }
 
-const char* modes[] = { "help", "version", "list", "continuous", "rainbow", "ambilight", "run" };
+const char* modes[7] = { "help", "version", "list", "continuous", "rainbow", "ambilight", "run" };
 
 enum class Mode {
     none = -1, help = 0, version = 1, list = 2, continuous = 3, rainbow = 4, ambilight = 5, run = 6
@@ -156,7 +156,7 @@ void runLoop(TimerCallbackParameters* timerCallbackParameters, float frequency)
 }
 
 Nebula::Generator* createGenerator(Mode mode, boost::program_options::variables_map vm) {
-    auto numberOfLeds = vm["nleds"].as<RT::u4>();
+    auto numberOfLeds = vm["nleds"].as<RT::s4>();
     switch (mode) {
         case Mode::rainbow:
             return new Rainbow(numberOfLeds,
@@ -164,10 +164,10 @@ Nebula::Generator* createGenerator(Mode mode, boost::program_options::variables_
                                vm["rate"].as<float>());
 
         case Mode::ambilight:
-            return new Ambilight(numberOfLeds);
+            return new Ambilight(numberOfLeds, vm["size"].as<RT::s4>());
 
         case Mode::run:
-            return new RunningLight(numberOfLeds, vm["nn"].as<RT::u4>());
+            return new RunningLight(numberOfLeds, vm["nn"].as<RT::s4>());
 
         default: RT::error(0x39AC18F5);
     }
@@ -201,6 +201,9 @@ int main(int argc, const char** argv)
                                                ("nn",
                                                 boost::program_options::value<RT::s4>()->default_value(100),
                                                 "set running light increment")
+                                               ("size,s",
+                                                boost::program_options::value<RT::s4>()->default_value(100),
+                                                "Ambilight sensing zones size")
                                                (Options::kFrequency,
                                                 boost::program_options::value<float>()->default_value(24.0f),
                                                 "set number of LEDs color updates per second")
@@ -308,6 +311,7 @@ int main(int argc, const char** argv)
 
                 if (animate) {
                     std::unique_ptr<Nebula::Generator> generator(createGenerator(mode, vm));
+                    std::unique_ptr<Nebula::Transformation> transformation(new Reorder(numberOfLeds, 3));
                     TimerCallbackParameters timerCallbackParameters(device, &colorsIoctlParameters, &colorsMutex);
 
                     std::thread pluginThread([&]() -> void {
@@ -318,6 +322,8 @@ int main(int argc, const char** argv)
                         time(&t1);
                         while (!doTerminate) {
                             generator->generate(localColors.get());
+                            transformation->transformInPlace(localColors.get());
+
                             guardedMemcpy(localColors.get(), colors.get(),
                                           numberOfLeds * sizeof(Nebula::Color::RGB<RT::u1>),
                                           &colorsMutex);

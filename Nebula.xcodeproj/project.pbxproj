@@ -30,7 +30,6 @@
 		922BB686175E2F7600A36B70 /* Ambilight.h in Headers */ = {isa = PBXBuildFile; fileRef = 922BB684175E2F7600A36B70 /* Ambilight.h */; };
 		92470685175474FC0015456F /* ledctl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470682175474FC0015456F /* ledctl.cpp */; };
 		92470686175474FC0015456F /* SignalHandling.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92470683175474FC0015456F /* SignalHandling.cpp */; };
-		924706AA17547EAB0015456F /* RgbHsv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706A917547EAB0015456F /* RgbHsv.cpp */; };
 		924706B81755B6060015456F /* cmdline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706AD1755B6060015456F /* cmdline.cpp */; };
 		924706B91755B6060015456F /* config_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706AE1755B6060015456F /* config_file.cpp */; };
 		924706BA1755B6060015456F /* convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 924706AF1755B6060015456F /* convert.cpp */; };
@@ -48,15 +47,16 @@
 		929E853A174E2BEE002DE715 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 929E8530174D130D002DE715 /* CoreFoundation.framework */; };
 		92C84C40175F855300522AA6 /* RunningLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92C84C3E175F855300522AA6 /* RunningLight.cpp */; };
 		92C84C41175F855300522AA6 /* RunningLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C3F175F855300522AA6 /* RunningLight.h */; };
+		92C84C44175F929200522AA6 /* Reorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92C84C42175F929200522AA6 /* Reorder.cpp */; };
+		92C84C45175F929200522AA6 /* Reorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C43175F929200522AA6 /* Reorder.h */; };
+		92C84C481760CA3300522AA6 /* GammaCorrection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92C84C461760CA3300522AA6 /* GammaCorrection.cpp */; };
+		92C84C491760CA3300522AA6 /* GammaCorrection.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C471760CA3300522AA6 /* GammaCorrection.h */; };
 		92DB216C1752591A007BF35B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DB216B1752591A007BF35B /* IOKit.framework */; };
 		92DB22811754694B007BF35B /* Nebula.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB22801754694B007BF35B /* Nebula.h */; };
 		92DB228617546958007BF35B /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228217546958007BF35B /* Context.h */; };
 		92DB228717546958007BF35B /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228317546958007BF35B /* Device.h */; };
 		92DB228817546958007BF35B /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92DB228417546958007BF35B /* Context.cpp */; };
 		92DB228917546958007BF35B /* Device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92DB228517546958007BF35B /* Device.cpp */; };
-		92DB228D17546969007BF35B /* HSV.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228A17546969007BF35B /* HSV.h */; };
-		92DB228E17546969007BF35B /* RGB.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228B17546969007BF35B /* RGB.h */; };
-		92DB228F17546969007BF35B /* RgbHsv.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228C17546969007BF35B /* RgbHsv.h */; };
 		92DB229517546976007BF35B /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229017546976007BF35B /* Context.h */; };
 		92DB229617546976007BF35B /* HAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229117546976007BF35B /* HAL.h */; };
 		92DB229717546976007BF35B /* USBDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229217546976007BF35B /* USBDevice.h */; };
@@ -118,7 +118,6 @@
 		92470682175474FC0015456F /* ledctl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ledctl.cpp; sourceTree = "<group>"; };
 		92470683175474FC0015456F /* SignalHandling.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SignalHandling.cpp; sourceTree = "<group>"; };
 		92470684175474FC0015456F /* SignalHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignalHandling.h; sourceTree = "<group>"; };
-		924706A917547EAB0015456F /* RgbHsv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RgbHsv.cpp; path = Sources/Nebula/Color/RgbHsv.cpp; sourceTree = "<group>"; };
 		924706AD1755B6060015456F /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
 		924706AE1755B6060015456F /* config_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config_file.cpp; sourceTree = "<group>"; };
 		924706AF1755B6060015456F /* convert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = convert.cpp; sourceTree = "<group>"; };
@@ -178,6 +177,10 @@
 		929E8538174E2BD5002DE715 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		92C84C3E175F855300522AA6 /* RunningLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RunningLight.cpp; path = Sources/Nebula/Plugins/RunningLight.cpp; sourceTree = "<group>"; };
 		92C84C3F175F855300522AA6 /* RunningLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RunningLight.h; path = Sources/Nebula/Plugins/RunningLight.h; sourceTree = "<group>"; };
+		92C84C42175F929200522AA6 /* Reorder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Reorder.cpp; path = Sources/Nebula/Plugins/Reorder.cpp; sourceTree = "<group>"; };
+		92C84C43175F929200522AA6 /* Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reorder.h; path = Sources/Nebula/Plugins/Reorder.h; sourceTree = "<group>"; };
+		92C84C461760CA3300522AA6 /* GammaCorrection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GammaCorrection.cpp; path = Sources/Nebula/Plugins/GammaCorrection.cpp; sourceTree = "<group>"; };
+		92C84C471760CA3300522AA6 /* GammaCorrection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GammaCorrection.h; path = Sources/Nebula/Plugins/GammaCorrection.h; sourceTree = "<group>"; };
 		92DB216B1752591A007BF35B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		92DB222D17539C3E007BF35B /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DB22801754694B007BF35B /* Nebula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nebula.h; path = Sources/Nebula/Nebula.h; sourceTree = "<group>"; };
@@ -185,9 +188,6 @@
 		92DB228317546958007BF35B /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = Sources/Nebula/HAL/Device.h; sourceTree = "<group>"; };
 		92DB228417546958007BF35B /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Context.cpp; path = Sources/Nebula/HAL/Context.cpp; sourceTree = "<group>"; };
 		92DB228517546958007BF35B /* Device.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device.cpp; path = Sources/Nebula/HAL/Device.cpp; sourceTree = "<group>"; };
-		92DB228A17546969007BF35B /* HSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSV.h; path = Sources/Nebula/Color/HSV.h; sourceTree = "<group>"; };
-		92DB228B17546969007BF35B /* RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RGB.h; path = Sources/Nebula/Color/RGB.h; sourceTree = "<group>"; };
-		92DB228C17546969007BF35B /* RgbHsv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RgbHsv.h; path = Sources/Nebula/Color/RgbHsv.h; sourceTree = "<group>"; };
 		92DB229017546976007BF35B /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Sources/Nebula/Apple/HAL/Context.h; sourceTree = "<group>"; };
 		92DB229117546976007BF35B /* HAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAL.h; path = Sources/Nebula/Apple/HAL/HAL.h; sourceTree = "<group>"; };
 		92DB229217546976007BF35B /* USBDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USBDevice.h; path = Sources/Nebula/Apple/HAL/USBDevice.h; sourceTree = "<group>"; };
@@ -247,6 +247,10 @@
 				922BB683175E2F7600A36B70 /* Ambilight.cpp */,
 				92C84C3F175F855300522AA6 /* RunningLight.h */,
 				92C84C3E175F855300522AA6 /* RunningLight.cpp */,
+				92C84C43175F929200522AA6 /* Reorder.h */,
+				92C84C42175F929200522AA6 /* Reorder.cpp */,
+				92C84C471760CA3300522AA6 /* GammaCorrection.h */,
+				92C84C461760CA3300522AA6 /* GammaCorrection.cpp */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
@@ -368,7 +372,6 @@
 				92DB22801754694B007BF35B /* Nebula.h */,
 				922928BE17599F3100CA0535 /* Plugins */,
 				92DB224A17539D24007BF35B /* HAL */,
-				92FB8B02174B2E800080F861 /* Color */,
 				92DB222117539BAF007BF35B /* Apple */,
 				92724B9C175B6FF100606E61 /* Firmware */,
 				92470680175474FC0015456F /* Command Line Utility */,
@@ -415,17 +418,6 @@
 			name = HAL;
 			sourceTree = "<group>";
 		};
-		92FB8B02174B2E800080F861 /* Color */ = {
-			isa = PBXGroup;
-			children = (
-				92DB228A17546969007BF35B /* HSV.h */,
-				92DB228B17546969007BF35B /* RGB.h */,
-				92DB228C17546969007BF35B /* RgbHsv.h */,
-				924706A917547EAB0015456F /* RgbHsv.cpp */,
-			);
-			name = Color;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -436,9 +428,6 @@
 				92DB22811754694B007BF35B /* Nebula.h in Headers */,
 				92DB228617546958007BF35B /* Context.h in Headers */,
 				92DB228717546958007BF35B /* Device.h in Headers */,
-				92DB228D17546969007BF35B /* HSV.h in Headers */,
-				92DB228E17546969007BF35B /* RGB.h in Headers */,
-				92DB228F17546969007BF35B /* RgbHsv.h in Headers */,
 				92DB229517546976007BF35B /* Context.h in Headers */,
 				92DB229617546976007BF35B /* HAL.h in Headers */,
 				92DB229717546976007BF35B /* USBDevice.h in Headers */,
@@ -446,6 +435,8 @@
 				922BB682175CE08700A36B70 /* Rainbow.h in Headers */,
 				922BB686175E2F7600A36B70 /* Ambilight.h in Headers */,
 				92C84C41175F855300522AA6 /* RunningLight.h in Headers */,
+				92C84C45175F929200522AA6 /* Reorder.h in Headers */,
+				92C84C491760CA3300522AA6 /* GammaCorrection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,10 +552,11 @@
 				92DB228917546958007BF35B /* Device.cpp in Sources */,
 				92DB229817546976007BF35B /* Context.cpp in Sources */,
 				92DB229917546976007BF35B /* USBDevice.cpp in Sources */,
-				924706AA17547EAB0015456F /* RgbHsv.cpp in Sources */,
 				922BB681175CE08700A36B70 /* Rainbow.cpp in Sources */,
 				922BB685175E2F7600A36B70 /* Ambilight.cpp in Sources */,
 				92C84C40175F855300522AA6 /* RunningLight.cpp in Sources */,
+				92C84C44175F929200522AA6 /* Reorder.cpp in Sources */,
+				92C84C481760CA3300522AA6 /* GammaCorrection.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +738,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COLOR_PATH = ../Color;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -759,6 +752,7 @@
 					"${RUNTIME_PATH}/Sources",
 					"${RAPIDXML_PATH}",
 					"${BOOST_PATH}",
+					"${COLOR_PATH}/Sources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -781,6 +775,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COLOR_PATH = ../Color;
 				COPY_PHASE_STRIP = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -801,6 +796,7 @@
 					"${RUNTIME_PATH}/Sources",
 					"${RAPIDXML_PATH}",
 					"${BOOST_PATH}",
+					"${COLOR_PATH}/Sources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;

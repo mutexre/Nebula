@@ -67,8 +67,8 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-nn=100"
-            isEnabled = "YES">
+            argument = "--nn=100"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "rainbow"

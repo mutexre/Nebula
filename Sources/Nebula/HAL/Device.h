@@ -56,7 +56,7 @@ namespace Nebula
 
                 struct Colors {
                     RT::u4 channel;
-                    Nebula::Color::RGB<RT::u1>* colors;
+                    Color::RGB<RT::u1>* colors;
                     RT::u4 numberOfLeds;
 
                     Colors() : channel(0), colors(0), numberOfLeds(0) {}

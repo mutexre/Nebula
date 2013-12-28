@@ -9,9 +9,7 @@ namespace Nebula {
 }
 
 #include <Runtime/Runtime.h>
-#include <Nebula/Color/HSV.h>
-#include <Nebula/Color/RGB.h>
-#include <Nebula/Color/RgbHsv.h>
+#include <Color/Color.h>
 #include <Nebula/Firmware/Requests.h>
 #include <Nebula/HAL/Device.h>
 #include <Nebula/HAL/Context.h>
@@ -19,5 +17,6 @@ namespace Nebula {
 #include <Nebula/Plugins/Rainbow.h>
 #include <Nebula/Plugins/Ambilight.h>
 #include <Nebula/Plugins/RunningLight.h>
+#include <Nebula/Plugins/Reorder.h>
 
 #endif

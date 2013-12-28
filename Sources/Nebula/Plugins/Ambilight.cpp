@@ -63,8 +63,7 @@ void getPixelData(CGImageRef imageRef, RT::u1* pixelData) {
 Nebula::Color::RGB<RT::u1> computeAvarageColor(const RT::u1* pixelData,
                                                size_t bytesPerRow, size_t bytesPerPixel,
                                                size_t rectX, size_t rectY,
-                                               size_t rectWidth, size_t rectHeight,
-                                               std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
+                                               size_t rectWidth, size_t rectHeight)
 {
     RT::u4 rSum = 0, gSum = 0, bSum = 0;
 
@@ -78,27 +77,24 @@ Nebula::Color::RGB<RT::u1> computeAvarageColor(const RT::u1* pixelData,
         }
     }
 
-    auto numberOfPixels = float(rectWidth * rectHeight);
-//    printf("%f\n", (float(rSum) / numberOfPixels) / 255.0f);
-
-    return colorTransformation((float(rSum) / numberOfPixels) / 255.0f,
-                               (float(gSum) / numberOfPixels) / 255.0f,
-                               (float(bSum) / numberOfPixels) / 255.0f);
+    auto numberOfPixels = rectWidth * rectHeight;
+    return Nebula::Color::RGB<RT::u1>((rSum / numberOfPixels) & 0xff,
+                                      (gSum / numberOfPixels) & 0xff,
+                                      (bSum / numberOfPixels) & 0xff);
 }
 
-RT::u4 calculateBarSize(RT::u4 n, RT::u4 i, RT::u4 size, float a) {
-    return 70.0f;
+RT::u4 Ambilight::calculateBarSize(RT::u4 n, RT::u4 i, RT::u4 size, float a) {
+    return zoneSize;
     auto half_n = 0.5f * float(n);
     auto f = (1.0f - a) * (1.0f - fabs(float(i) - half_n) / half_n) + a;
     return (size / 2) * f;
 }
 
-void computeAmbilightColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixelData,
-                            size_t bytesPerRow, size_t bytesPerPixel,
-                            RT::u4 width, RT::u4 height,
-                            RT::u2 left, RT::u2 right,
-                            RT::u2 bottom, RT::u2 top,
-                            std::function<Nebula::Color::RGB<RT::u1> (float r, float g, float b)> colorTransformation)
+void Ambilight::computeColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixelData,
+                              size_t bytesPerRow, size_t bytesPerPixel,
+                              RT::u4 width, RT::u4 height,
+                              RT::u2 left, RT::u2 right,
+                              RT::u2 bottom, RT::u2 top)
 {
     RT::u4 ledIndex = 0;
 
@@ -106,25 +102,23 @@ void computeAmbilightColors(Nebula::Color::RGB<RT::u1>* leds, const RT::u1* pixe
         leds[ledIndex++] = computeAvarageColor(pixelData,
                                                bytesPerRow, bytesPerPixel,
                                                0, y * height / left,
-                                               calculateBarSize(left, y, width, 0.3f), height / left,
-                                               colorTransformation);
+                                               calculateBarSize(left, y, width, 0.3f), height / left);
 
     for (auto x = 0; x < top; x++)
         leds[ledIndex++] = computeAvarageColor(pixelData,
                                                bytesPerRow, bytesPerPixel,
                                                x * width / top, 0,
-                                               width / top, calculateBarSize(top, x, height, 0.3f),
-                                               colorTransformation);
+                                               width / top, calculateBarSize(top, x, height, 0.3f));
 
     for (auto y = 0; y < right; y++)
         leds[ledIndex++] = computeAvarageColor(pixelData,
                                                bytesPerRow, bytesPerPixel,
                                                width - 200, y * height / right,
-                                               calculateBarSize(right, y, width, 0.3f), height / right,
-                                               colorTransformation);
+                                               calculateBarSize(right, y, width, 0.3f), height / right);
 }
 
-Ambilight::Ambilight(RT::u4 numberOfLeds) : Generator(numberOfLeds) {
+Ambilight::Ambilight(RT::u4 numberOfLeds, RT::u4 zoneSize) : Generator(numberOfLeds) {
+    this->zoneSize = zoneSize;
 }
 
 void Ambilight::generate(Nebula::Color::RGB<RT::u1>* output) {
@@ -141,11 +135,11 @@ void Ambilight::generate(Nebula::Color::RGB<RT::u1>* output) {
                                     std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
                                     [=](float saturation) -> float { return powf(saturation, 0.3f); });
 
-    computeAmbilightColors(output, pixelData,
-                           CGImageGetBytesPerRow(image), CGImageGetBitsPerPixel(image) >> 3,
-                           width, height,
-                           9, 9, 0, 12,
-                           colorTransformation);
+    computeColors(output, pixelData,
+                  CGImageGetBytesPerRow(image), CGImageGetBitsPerPixel(image) >> 3,
+                  width, height,
+                  9, 9, 0, 12,
+                  colorTransformation);
 
     CFRelease(data);
     CGImageRelease(image);
