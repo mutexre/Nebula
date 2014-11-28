@@ -51,12 +51,12 @@
 		92C84C45175F929200522AA6 /* Reorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C43175F929200522AA6 /* Reorder.h */; };
 		92C84C481760CA3300522AA6 /* GammaCorrection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92C84C461760CA3300522AA6 /* GammaCorrection.cpp */; };
 		92C84C491760CA3300522AA6 /* GammaCorrection.h in Headers */ = {isa = PBXBuildFile; fileRef = 92C84C471760CA3300522AA6 /* GammaCorrection.h */; };
+		92D047A51A28887900B81343 /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D047A11A28887900B81343 /* Context.cpp */; };
+		92D047A61A28887900B81343 /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D047A21A28887900B81343 /* Context.h */; };
+		92D047A71A28887900B81343 /* Device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92D047A31A28887900B81343 /* Device.cpp */; };
+		92D047A81A28887900B81343 /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D047A41A28887900B81343 /* Device.h */; };
 		92DB216C1752591A007BF35B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92DB216B1752591A007BF35B /* IOKit.framework */; };
 		92DB22811754694B007BF35B /* Nebula.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB22801754694B007BF35B /* Nebula.h */; };
-		92DB228617546958007BF35B /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228217546958007BF35B /* Context.h */; };
-		92DB228717546958007BF35B /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB228317546958007BF35B /* Device.h */; };
-		92DB228817546958007BF35B /* Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92DB228417546958007BF35B /* Context.cpp */; };
-		92DB228917546958007BF35B /* Device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92DB228517546958007BF35B /* Device.cpp */; };
 		92DB229517546976007BF35B /* Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229017546976007BF35B /* Context.h */; };
 		92DB229617546976007BF35B /* HAL.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229117546976007BF35B /* HAL.h */; };
 		92DB229717546976007BF35B /* USBDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 92DB229217546976007BF35B /* USBDevice.h */; };
@@ -181,13 +181,13 @@
 		92C84C43175F929200522AA6 /* Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reorder.h; path = Sources/Nebula/Plugins/Reorder.h; sourceTree = "<group>"; };
 		92C84C461760CA3300522AA6 /* GammaCorrection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GammaCorrection.cpp; path = Sources/Nebula/Plugins/GammaCorrection.cpp; sourceTree = "<group>"; };
 		92C84C471760CA3300522AA6 /* GammaCorrection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GammaCorrection.h; path = Sources/Nebula/Plugins/GammaCorrection.h; sourceTree = "<group>"; };
+		92D047A11A28887900B81343 /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Context.cpp; path = Sources/Nebula/Context.cpp; sourceTree = "<group>"; };
+		92D047A21A28887900B81343 /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Sources/Nebula/Context.h; sourceTree = "<group>"; };
+		92D047A31A28887900B81343 /* Device.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device.cpp; path = Sources/Nebula/Device.cpp; sourceTree = "<group>"; };
+		92D047A41A28887900B81343 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = Sources/Nebula/Device.h; sourceTree = "<group>"; };
 		92DB216B1752591A007BF35B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		92DB222D17539C3E007BF35B /* libLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DB22801754694B007BF35B /* Nebula.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Nebula.h; path = Sources/Nebula/Nebula.h; sourceTree = "<group>"; };
-		92DB228217546958007BF35B /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Sources/Nebula/HAL/Context.h; sourceTree = "<group>"; };
-		92DB228317546958007BF35B /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Device.h; path = Sources/Nebula/HAL/Device.h; sourceTree = "<group>"; };
-		92DB228417546958007BF35B /* Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Context.cpp; path = Sources/Nebula/HAL/Context.cpp; sourceTree = "<group>"; };
-		92DB228517546958007BF35B /* Device.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Device.cpp; path = Sources/Nebula/HAL/Device.cpp; sourceTree = "<group>"; };
 		92DB229017546976007BF35B /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Context.h; path = Sources/Nebula/Apple/HAL/Context.h; sourceTree = "<group>"; };
 		92DB229117546976007BF35B /* HAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAL.h; path = Sources/Nebula/Apple/HAL/HAL.h; sourceTree = "<group>"; };
 		92DB229217546976007BF35B /* USBDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = USBDevice.h; path = Sources/Nebula/Apple/HAL/USBDevice.h; sourceTree = "<group>"; };
@@ -370,8 +370,11 @@
 			isa = PBXGroup;
 			children = (
 				92DB22801754694B007BF35B /* Nebula.h */,
+				92D047A21A28887900B81343 /* Context.h */,
+				92D047A11A28887900B81343 /* Context.cpp */,
+				92D047A41A28887900B81343 /* Device.h */,
+				92D047A31A28887900B81343 /* Device.cpp */,
 				922928BE17599F3100CA0535 /* Plugins */,
-				92DB224A17539D24007BF35B /* HAL */,
 				92DB222117539BAF007BF35B /* Apple */,
 				92724B9C175B6FF100606E61 /* Firmware */,
 				92470680175474FC0015456F /* Command Line Utility */,
@@ -382,7 +385,11 @@
 		92DB222117539BAF007BF35B /* Apple */ = {
 			isa = PBXGroup;
 			children = (
-				92DB224B17539DD9007BF35B /* HAL */,
+				92DB229117546976007BF35B /* HAL.h */,
+				92DB229217546976007BF35B /* USBDevice.h */,
+				92DB229417546976007BF35B /* USBDevice.cpp */,
+				92DB229017546976007BF35B /* Context.h */,
+				92DB229317546976007BF35B /* Context.cpp */,
 			);
 			name = Apple;
 			sourceTree = "<group>";
@@ -395,29 +402,6 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		92DB224A17539D24007BF35B /* HAL */ = {
-			isa = PBXGroup;
-			children = (
-				92DB228317546958007BF35B /* Device.h */,
-				92DB228517546958007BF35B /* Device.cpp */,
-				92DB228217546958007BF35B /* Context.h */,
-				92DB228417546958007BF35B /* Context.cpp */,
-			);
-			name = HAL;
-			sourceTree = "<group>";
-		};
-		92DB224B17539DD9007BF35B /* HAL */ = {
-			isa = PBXGroup;
-			children = (
-				92DB229117546976007BF35B /* HAL.h */,
-				92DB229217546976007BF35B /* USBDevice.h */,
-				92DB229417546976007BF35B /* USBDevice.cpp */,
-				92DB229017546976007BF35B /* Context.h */,
-				92DB229317546976007BF35B /* Context.cpp */,
-			);
-			name = HAL;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -426,17 +410,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				92DB22811754694B007BF35B /* Nebula.h in Headers */,
-				92DB228617546958007BF35B /* Context.h in Headers */,
-				92DB228717546958007BF35B /* Device.h in Headers */,
 				92DB229517546976007BF35B /* Context.h in Headers */,
 				92DB229617546976007BF35B /* HAL.h in Headers */,
 				92DB229717546976007BF35B /* USBDevice.h in Headers */,
 				922BB67A175CD5A500A36B70 /* Plugin.h in Headers */,
 				922BB682175CE08700A36B70 /* Rainbow.h in Headers */,
+				92D047A81A28887900B81343 /* Device.h in Headers */,
 				922BB686175E2F7600A36B70 /* Ambilight.h in Headers */,
 				92C84C41175F855300522AA6 /* RunningLight.h in Headers */,
 				92C84C45175F929200522AA6 /* Reorder.h in Headers */,
 				92C84C491760CA3300522AA6 /* GammaCorrection.h in Headers */,
+				92D047A61A28887900B81343 /* Context.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +434,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = /Users/mutexre/Projects/Nebula/Sources/Nebula/Firmware;
+			buildWorkingDirectory = $PROJECT_DIR/Sources/Nebula/Firmware;
 			dependencies = (
 			);
 			name = Firmware;
@@ -548,13 +532,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92DB228817546958007BF35B /* Context.cpp in Sources */,
-				92DB228917546958007BF35B /* Device.cpp in Sources */,
 				92DB229817546976007BF35B /* Context.cpp in Sources */,
+				92D047A51A28887900B81343 /* Context.cpp in Sources */,
 				92DB229917546976007BF35B /* USBDevice.cpp in Sources */,
 				922BB681175CE08700A36B70 /* Rainbow.cpp in Sources */,
 				922BB685175E2F7600A36B70 /* Ambilight.cpp in Sources */,
 				92C84C40175F855300522AA6 /* RunningLight.cpp in Sources */,
+				92D047A71A28887900B81343 /* Device.cpp in Sources */,
 				92C84C44175F929200522AA6 /* Reorder.cpp in Sources */,
 				92C84C481760CA3300522AA6 /* GammaCorrection.cpp in Sources */,
 			);
@@ -589,6 +573,7 @@
 		407952400CEA382200E202DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BASE_PATH = ../Base;
 				COPY_PHASE_STRIP = YES;
 				HEADER_SEARCH_PATHS = ../Sources;
 				SYMROOT = /tmp/build;
@@ -658,6 +643,7 @@
 		929E853B174E3596002DE715 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BASE_PATH = ../Base;
 				COPY_PHASE_STRIP = YES;
 				HEADER_SEARCH_PATHS = ../Sources;
 				SYMROOT = /tmp/build;
@@ -730,7 +716,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				BOOST_PATH = /Volumes/AUX/Programming/boost_1_53_0;
+				BOOST_PATH = ../boost;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -738,7 +724,6 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COLOR_PATH = ../Color;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -749,15 +734,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					Sources,
-					"${RUNTIME_PATH}/Sources",
+					"${BASE_PATH}/Sources",
 					"${RAPIDXML_PATH}",
 					"${BOOST_PATH}",
-					"${COLOR_PATH}/Sources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
-				RUNTIME_PATH = ../Runtime;
+				RAPIDXML_PATH = "../rapidxml-1.13";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -767,7 +750,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				BOOST_PATH = /Volumes/AUX/Programming/boost_1_53_0;
+				BOOST_PATH = ../boost;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -775,7 +758,6 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COLOR_PATH = ../Color;
 				COPY_PHASE_STRIP = NO;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -793,16 +775,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					Sources,
-					"${RUNTIME_PATH}/Sources",
+					"${BASE_PATH}/Sources",
 					"${RAPIDXML_PATH}",
 					"${BOOST_PATH}",
-					"${COLOR_PATH}/Sources",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RAPIDXML_PATH = "${RUNTIME_PATH}/Dependencies/rapidxml-1.13";
-				RUNTIME_PATH = ../Runtime;
+				RAPIDXML_PATH = "../rapidxml-1.13";
 				SDKROOT = macosx;
 			};
 			name = Debug;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A39D4FB0-2A87-4728-B524-817CCE27C9F9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Nebula</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DCA86BA7290659C487CB26E77DE7AFBB48E7F64B</key>
+		<string>https://github.com/mutexre/Nebula.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Nebula.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DCA86BA7290659C487CB26E77DE7AFBB48E7F64B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mutexre/Nebula.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DCA86BA7290659C487CB26E77DE7AFBB48E7F64B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DCA86BA7290659C487CB26E77DE7AFBB48E7F64B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Nebula</string>
+		</dict>
+	</array>
+</dict>
+</plist>
